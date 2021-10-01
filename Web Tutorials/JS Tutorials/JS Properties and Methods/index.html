@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+    </body>
+    <script>
+        var item = "Bottle of water";
+        console.log(item.length);
+        console.log(item.indexOf());
+        console.log(item.substring(7,9)); //Prints out of
+        console.log(item.replace("water", "juice"));
+        console.log(item.toUpperCase());
+
+        var items = ["Bottle", 4, true];
+        console.log(items);
+        console.log(items.length);
+        console.log(items.join(" | ")); //Combines all indices into one string
+        console.log(items.toString()); //Does the same as .join()
+        items.pop(); //Removes an item from the array
+        console.log(items.join(", "));
+        items.push("Juice"); //Adds an item to the array
+        console.log(items.push("Juice")); //Tells you which index "Juice" was pushed into
+        </script>
+</html>

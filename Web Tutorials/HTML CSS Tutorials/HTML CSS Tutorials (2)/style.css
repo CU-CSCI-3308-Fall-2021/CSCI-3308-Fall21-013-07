@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+/*Pseudo Classes*/
+
+/*:root {
+  color: red;
+}*/
+
+h1:hover {
+  color: red;
+}
+
+a:active { /*:visited is another effect; it affects styling of a link after visiting it*/
+  color: green;
+}
+
+a:visited {
+  color: green;
+}
+
+.list-example-1 p:last-child {
+    color: blue;
+}
+
+.list-example-2 p:nth-child(2n+0) {
+  color: pink;
+}
+
+/*Pseudo Elements*/
+
+.element-1::first-line {
+  background-color: yellow;
+  color: red;
+}
+
+.element-2::first-letter {
+  background-color: green;
+  color: white;
+}
+
+.element-3::selection {
+  background-color: green;
+  color: blue;
+}
+
+.element-4::before {
+  content: attr(class);
+}
+
+.element-4::after {
+  content: attr(class);
+}
+
+/*Transitions!*/
+h1 {
+  color: blue;
+  font-family: arial;
+  font-size: 30px;
+  width: 33%;
+
+  /*What do you want to change, how long, what kind(ease-in, etc), delay*/
+  -o-transition: all 2s  ease-in-out 30ms; /*Old Opera support*/
+  -moz-transition: all 2s  ease-in-out 30ms; /*Old Mozilla Firefox support*/
+  -webkit-transition: all 2s  ease-in-out 30ms; /*Old Chrome support*/
+  transition: all 2s  ease-in-out 30ms;
+}
+
+.button-test {
+  display: block;
+  width: 128px;
+  height: 60px;
+  padding-left: 20px;
+  background-color: lightblue;
+  font-size: 20px;
+  font-family: arial;
+  color: #222 !important;
+  line-height: 60px;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.button-test:hover {
+  width: 170px;
+  height: 300px;
+  padding-left: 500px;
+  background-color: red;
+
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+}
+
+.button-test span {
+  padding-left: 30px;
+  color: white;
+  font-weight: 900;
+}

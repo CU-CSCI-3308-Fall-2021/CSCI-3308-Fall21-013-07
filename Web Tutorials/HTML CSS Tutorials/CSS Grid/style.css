@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    "title title"
+    "header header" /*Using . creates whitespace*/
+    "sidebar sidebar"
+    "content content"
+    "footer footer";
+    grid-gap: 10px;
+}
+
+.title {
+    /*Top way is more complicated, other is easier
+    /*grid-column: 1 / 3; Start at line 1 and end at line 3
+    grid-column-end: span 1; /*This is another way to do grid-column: 1 / 3;
+    grid-row: span 2; */
+
+    grid-area: title;
+}
+
+.header {
+    grid-area: header;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.content {
+    grid-area: content;
+    justify-self: start; /*This allows it to only take up the space required; start makes it go to left, end makes to go to the right, center "";    it is horizontal*/
+    align-self: start; /*Same as justify-self but vertical*/
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.grid div:nth-child(even) {
+    background-color: red;
+}
+
+.grid div:nth-child(odd) {
+    background-color: green;
+}
+
+@media screen and (min-width: 736px) {
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 500px 500px 1fr; 
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+        ". title title ."
+        ". header header ." /*Using . creates whitespace*/
+        ". sidebar content ."
+        ". sidebar footer .";
+    }
+}

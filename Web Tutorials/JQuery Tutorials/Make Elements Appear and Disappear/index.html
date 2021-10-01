@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <svg width="24" height="24" id="menu-toggle">
+                <line x1="0" y1="4" x2="20" y2="4" stroke="#111" stroke-width="4"></line>
+                <line x1="0" y1="12" x2="20" y2="12" stroke="#111" stroke-width="4"></line>
+                <line x1="0" y1="20" x2="20" y2="20" stroke="#111" stroke-width="4"></line>
+            </svg>
+        </header>
+
+        <nav id="side-nav">
+            <ul>
+                <li><a class="active" href="#">Home</a></li>
+                <li><a href="#">My channel</a></li>
+                <li><a href="#">Trending</a></li>
+                <li><a href="#">Subscriptions</a></li>
+            </ul>
+            <ul>
+                <li><p>LIBRARY</p></li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Watch later</a></li>
+                <li><a href="#">Purchases</a></li>
+                <li><a href="#">JQuery</a></li>
+            </ul>
+        </nav>
+
+        <script>
+            $(document).ready(function() {
+                $("#menu-toggle").click(function() {
+                    // Parameters: speed, easing, callback
+                    // $("#side-nav").toggle(1000, "linear", function() {
+                    //     alert("Hi there!");
+                    // });
+
+                    // $("#side-nav").fadeToggle(1000);
+                    $("#side-nav").fadeTo(1000, 0.5, function() {
+                        alert("Hoi");
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
