@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --text-color: #ccc;
+}
+
+.section-one p {
+  color: var(--text-color);
+}
+
+.section-two p {
+  color: var(--text-color);
+}
+
+/*.section-one {
+  --test: 10px;
+}
+
+.section-two {
+  --test: 20px;
+}

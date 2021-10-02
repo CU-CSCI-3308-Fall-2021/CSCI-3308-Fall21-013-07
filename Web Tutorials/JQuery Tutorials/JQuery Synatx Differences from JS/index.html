@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <p id="test">This is a paragraph!</p>
+        <script>
+            // Rule of thumb: Load JS last by having it at the bottom(JQuery can be included anyway)
+            // JQuery Way
+            $("#test").click(function() {
+                alert("Clicked");
+            });
+            // JS Way
+            // document.getElementById("test").onclick = function() {
+            //     alert("Clicked");
+            // }
+            $(document).ready(function() {
+                $("#test").click(function() {
+                    $(this).css("background-color", "#f1c40f");
+                });
+            });
+            </script>  
+    </body>
+</html>
