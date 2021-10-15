@@ -155,7 +155,7 @@
             <input type="text" name="user" placeholder="Username" value="<?php if(!empty($user)) {
                 echo $user;
             } ?>" class="<?php 
-                if ($uInvalid) {
+                if ($uInvalid || $takenUser) {
                     echo 'signup-error';
                 } else if ($session) {
                     echo 'signup-success';
@@ -164,7 +164,7 @@
             <input type="text" name="email" placeholder="Email" value="<?php if(!empty($email)) {
                 echo $email;
             } ?>" class="<?php 
-                if ($eInvalid) {
+                if ($eInvalid || $takenEmail) {
                     echo 'signup-error';
                 } else if ($session) {
                     echo 'signup-success';

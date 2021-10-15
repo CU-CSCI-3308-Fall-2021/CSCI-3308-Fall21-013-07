@@ -86,7 +86,27 @@
 
                 if ($resultCheck > 0) {
                     $_SESSION['takenUser'] = true;
-                    header("Location: ../signup.php");
+                    // Check if email also taken
+                    $sql = "SELECT email FROM userinfo WHERE email=?;";
+                    $stmt = mysqli_stmt_init($conn);
+                    
+                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        header("Location: ../signup.php?error=sqlerror");
+                        exit();
+                    } else {
+                        mysqli_stmt_bind_param($stmt, "s", $email);
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_store_result($stmt);
+                        $resultCheck = mysqli_stmt_num_rows($stmt);
+
+                        if ($resultCheck > 0) {
+                            // Email also taken
+                            $_SESSION['takenEmail'] = true;
+                        }
+                        // Go back to signup.php regardless
+                        header("Location: ../signup.php");
+                        exit();
+                    }
                 } else {
                     $sql = "SELECT email FROM userinfo WHERE email=?;";
                     $stmt = mysqli_stmt_init($conn);
@@ -103,6 +123,7 @@
                         if ($resultCheck > 0) {
                             $_SESSION['takenEmail'] = true;
                             header("Location: ../signup.php");
+                            exit();
                         } else {
                             $sql = "INSERT INTO userinfo (firstName, lastName, username, email, pwd, registrationDate, lastLoginTime, dailyStreak) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                             $stmt = mysqli_stmt_init($conn);
