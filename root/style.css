@@ -29,8 +29,9 @@ ul li {
     float: left;
 }
 
-ul li.login-btn {
+.user-logout-container {
     float: right;
+    padding-left: 3%;
 }
 
 ul li a {
@@ -46,6 +47,14 @@ ul li.login-btn a {
 
 ul li a:hover {
     background-color: #111;
+}
+
+ul li.user-profile-link {
+    padding-right: 15px;
+}
+
+ul li.user-profile-link a:hover {
+    background-color: #333;
 }
 
 /* index.php CSS */
@@ -138,11 +147,22 @@ ul li a:hover {
 
 /* search.php CSS */
 
+p.search-query-result {
+    color: #2ecc71;
+    text-align: center;
+    padding-top: 2%;
+}
+
+p.search-query-result-fail {
+    color: #e74c3c;
+    text-align: center;
+    padding-top: 2%;
+}
+
 .search-results {
-    border: 2px solid #ecf0f1;
     border-radius: 24px;
     margin: 2% auto;
-    width: 90%;
+    width: 75%;
 }
 
 .result-row {
@@ -153,6 +173,7 @@ ul li a:hover {
 
 .result {
     width: 25%;
+    color: #ecf0f1;
     border: 2px solid #ecf0f1;
     border-radius: 24px;
     margin: 2.5% 5%;
