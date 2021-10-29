@@ -135,3 +135,55 @@ ul li a:hover {
 .form-signup input[type = "submit"]:focus {
     background: #2ecc71;
 }
+
+/* search.php CSS */
+
+.search-results {
+    border: 2px solid #ecf0f1;
+    border-radius: 24px;
+    margin: 2% auto;
+    width: 90%;
+}
+
+.result-row {
+    display: flex;
+    margin: 0 auto;
+    height: 10%;
+}
+
+.result {
+    width: 25%;
+    border: 2px solid #ecf0f1;
+    border-radius: 24px;
+    margin: 2.5% 5%;
+    padding: 5% 2.5%;
+}
+
+/* 404.php CSS */
+
+.errorcontainer {
+    display: block;
+    padding: 10px 0;
+    margin: 0 auto;
+    width: 75%;
+}
+
+.error-message {
+    color: #ecf0f1;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 120px;
+}
+
+.error-detail {
+    color: #ecf0f1;
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 7px;
+}

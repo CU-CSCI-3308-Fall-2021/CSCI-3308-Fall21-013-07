@@ -16,7 +16,7 @@
                 <ul>
                     <li><a href="index.php" class="active">Home</a></li>
                     <li><a href="#">Create</a></li>
-                    <li><a href="#">Search Map</a></li>
+                    <li><a href="search.php">Search Map</a></li>
                     <li><a href="#">About</a></li>
                     <?php
                         if(isset($_SESSION['userId'])) {
