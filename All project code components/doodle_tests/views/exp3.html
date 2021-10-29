@@ -1,0 +1,191 @@
+<html>
+
+    <!-- // BEGIN SCRIPT!!!! -->
+    <script type="text/javascript">
+    
+    // setup canvas, context, and some helper variables for sketching
+    var canvas, ctx, flag = false,
+        // x cooridnates
+        prevX = 0,
+        currX = 0,
+        // y cooridnates
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+
+    // init pen color
+    var x = "black",
+        y = 2;
+    
+    ///////////////////
+    // FUNCTION ZONE //
+    ///////////////////
+    
+    // source help
+    // canvas api: https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event
+    // w3schools super helpful here for canvas methods: https://www.w3schools.com/tags/ref_canvas.asp
+
+
+    // initialze canvas //
+    function init() {
+        canvas = document.getElementById('can');
+        ctx = canvas.getContext("2d");
+        
+        // width and heights of canvas
+        w = canvas.width;  
+        h = canvas.height;
+    
+        // sset all evetns to false for start
+        // all these evnts are documented in the mozilla canvas api link aboive
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e)
+        }, false);
+    }
+    
+    // change current color //
+    function color(obj) {
+        // function passes obj.id which is association with the <div> for each color seltion form the pallet
+        // x is our pen color
+        switch (obj.id) {
+            case "green":
+                x = "green";
+                break;
+            case "blue":
+                x = "blue";
+                break;
+            case "red":
+                x = "red";
+                break;
+            case "yellow":
+                x = "yellow";
+                break;
+            case "orange":
+                x = "orange";
+                break;
+            case "black":
+                x = "black";
+                break;
+            case "white":
+                x = "white";
+                break;
+        }
+        // note y is our line width we maek it wider while erasing to make it easier!
+        if (x == "white") y = 14;
+        else y = 2;
+    
+    }
+    
+    // drawring stuff //
+    function draw() {
+        // begin
+        ctx.beginPath();
+        // line info
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        // style
+        ctx.strokeStyle = x;
+        ctx.lineWidth = y;
+        // stroke
+        ctx.stroke();
+        // fin
+        ctx.closePath();
+    }
+    
+    // clear whole canvas //
+    function erase() {
+        var m = confirm("Want to clear");
+        if (m) {
+            ctx.clearRect(0, 0, w, h);
+            document.getElementById("canvasimg").style.display = "none";
+        }
+    }
+    
+    // copy canvas //
+    function save() {
+        // just kinda copise the current statuso fo canvas and sets that as teh canvas in the copy also
+        document.getElementById("canvasimg").style.border = "2px solid";
+        var dataURL = canvas.toDataURL();
+        document.getElementById("canvasimg").src = dataURL;
+        document.getElementById("canvasimg").style.display = "inline";
+    }
+
+
+    function exportMap(){
+        const a = document.createElement("a");
+        document.body.appendChild(a);
+        a.href = canvas.toDataURL();
+        a.download = "canvas-image.png";
+        a.click();
+        document.body.removeChild(a);
+    }
+    
+    // find our cooidnates of the mouse on screen //
+    function findxy(res, e) {
+        if (res == 'down') {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+    
+            flag = true;
+            dot_flag = true;
+            if (dot_flag) {
+                ctx.beginPath();
+                ctx.fillStyle = x;
+                ctx.fillRect(currX, currY, 2, 2);
+                ctx.closePath();
+                dot_flag = false;
+            }
+        }
+        if (res == 'up' || res == "out") {
+            flag = false;
+        }
+        if (res == 'move') {
+            if (flag) {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - canvas.offsetLeft;
+                currY = e.clientY - canvas.offsetTop;
+                draw();
+            }
+        }
+    }
+    </script>
+
+    <!-- load up the page and tool bar interface -->
+    <body onload="init()">
+        <!-- canvas -->
+        <canvas id="can" width="400" height="400" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
+        
+        <!-- color selction -->
+        <div style="position:absolute;top:12%;left:43%;">Choose Color</div>
+        <div style="position:absolute;top:15%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>
+        <div style="position:absolute;top:15%;left:46%;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div>
+        <div style="position:absolute;top:15%;left:47%;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div>
+        <div style="position:absolute;top:17%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>
+        <div style="position:absolute;top:17%;left:46%;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div>
+        <div style="position:absolute;top:17%;left:47%;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div>
+        
+        <!-- eraser -->
+        <div style="position:absolute;top:20%;left:43%;">Eraser</div>
+        <div style="position:absolute;top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+        
+        <!-- sketched image -->
+        <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
+        <!-- save -->
+        <input type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:55%;left:10%;">
+        <!-- export -->
+        <input type="button" value="exp" id="exp" size="30" onclick="exportMap()" style="position:absolute;top:55%;left:15%;">
+        <!-- clear -->
+        <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:55%;left:20%;">
+    </body>
+    </html>
