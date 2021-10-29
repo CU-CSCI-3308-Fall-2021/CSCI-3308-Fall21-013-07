@@ -171,6 +171,10 @@ p.search-query-result-fail {
     height: 10%;
 }
 
+.result-row a {
+    color: #ecf0f1;
+}
+
 .result {
     width: 25%;
     color: #ecf0f1;
