@@ -26,25 +26,25 @@
                     $resultString = "";
                     while ($row = mysqli_fetch_assoc($result)) {
                         if ($counter == 1) {
-                            $resultString = $resultString . "<div class='result-row'><a href='index.php'><div class='result'>
+                            $resultString = $resultString . "<div class='result-row'><a href='index.php' class='search-result-link'><div class='result'>
                                                 <p>".$row['username']."</p>
                                                 <p>".$row['drawingName']."</p>
                                                 <p>".$row['dateModified']."</p>
-                                                </a></div>";
+                                                </div></a>";
                             $counter++;
                         } else if ($counter == 4) {
-                            $resultString = $resultString . "<a href='index.php'><div class='result'>
+                            $resultString = $resultString . "<a href='index.php' class='search-result-link'><div class='result'>
                                                                 <p>".$row['username']."</p>
                                                                 <p>".$row['drawingName']."</p>
                                                                 <p>".$row['dateModified']."</p>
-                                                                </a></div></div>";
+                                                                </div></a></div>";
                             $counter = 1;
                         } else {
-                            $resultString = $resultString . "<a href='index.php'><div class='result'>
+                            $resultString = $resultString . "<a href='index.php' class='search-result-link'><div class='result'>
                                                                 <p>".$row['username']."</p>
                                                                 <p>".$row['drawingName']."</p>
                                                                 <p>".$row['dateModified']."</p>
-                                                                </a></div>";
+                                                                </div></a>";
                             $counter++;
                         }
                     }
