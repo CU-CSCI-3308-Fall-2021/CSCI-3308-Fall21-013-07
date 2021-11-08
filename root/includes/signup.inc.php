@@ -125,16 +125,17 @@
                             header("Location: ../signup.php");
                             exit();
                         } else {
-                            $sql = "INSERT INTO userinfo (firstName, lastName, username, email, pwd, registrationDate, lastLoginTime, dailyStreak) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                            $sql = "INSERT INTO userinfo (firstName, lastName, username, email, pwd, drawingCount, registrationDate, lastLoginTime, dailyStreak) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                             $stmt = mysqli_stmt_init($conn);
                             if (!mysqli_stmt_prepare($stmt, $sql)) {
                                 header("Location: ../signup.php?error=sqlerror");
                                 exit();
                             } else {
                                 $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+                                $drawingCount = 0;
                                 $date = date('Y-m-d H:i:s');
                                 $streak = 0;
-                                mysqli_stmt_bind_param($stmt, "sssssssi", $firstName, $lastName, $userName, $email, $hashedPwd, $date, $date, $streak);
+                                mysqli_stmt_bind_param($stmt, "sssssissi", $firstName, $lastName, $userName, $email, $hashedPwd, $drawingCount, $date, $date, $streak);
                                 mysqli_stmt_execute($stmt);
 
                                 $sql = "SELECT * FROM userinfo WHERE username=?;";

@@ -5,6 +5,7 @@ CREATE TABLE userinfo (
     username varchar(50),
     email varchar(50),
     pwd CHAR(60),
+    drawingCount int,
     registrationDate DATETIME,
     lastLoginTime DATETIME,
     dailyStreak int,
