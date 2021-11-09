@@ -1,0 +1,38 @@
+body, html{
+    height: 100vh;
+}
+
+.full{
+    background-color:#384fb5;
+    height:100%
+}
+
+.container{
+    padding-top:2em;
+}
+
+.card{
+    margin-bottom:3rem;
+}
+
+.button-right{
+    margin-right:1em;
+    margin-left:auto;
+}
+
+.navbar-brand{
+    margin-left:1rem;
+}
+
+.btnLikeContainer{
+    width:100%;
+}
+
+.row{
+    width:100%;
+}
+
+.container-fluid{
+    margin-top:1rem;
+    padding:3rem;
+}
