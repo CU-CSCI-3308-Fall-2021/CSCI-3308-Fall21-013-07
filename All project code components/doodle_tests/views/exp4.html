@@ -1,0 +1,361 @@
+<html>
+
+    <!-- // BEGIN SCRIPT!!!! -->
+    <script type="text/javascript">
+    
+    // setup canvas, context, and some helper variables for sketching
+    var canvas, ctx, flag = false,
+        // x cooridnates
+        prevX = 0,
+        currX = 0,
+        // y cooridnates
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+
+    // init pen color
+    var x = "black",
+        y = 2;
+    
+    ///////////////////
+    // FUNCTION ZONE //
+    ///////////////////
+    
+    // source help
+    // canvas api: https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event
+    // w3schools super helpful here for canvas methods: https://www.w3schools.com/tags/ref_canvas.asp
+
+
+    // initialze canvas //
+    function init() {
+        canvas = document.getElementById('can');
+        ctx = canvas.getContext("2d");
+        
+        // width and heights of canvas
+        w = canvas.width;  
+        h = canvas.height;
+    
+        // sset all evetns to false for start
+        // all these evnts are documented in the mozilla canvas api link aboive
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e)
+        }, false);
+    }
+    
+    // change current color //
+    function color(obj) {
+        // function passes obj.id which is association with the <div> for each color seltion form the pallet
+        // x is our pen color
+        switch (obj.id) {
+            case "green":
+                x = "green";
+                break;
+            case "blue":
+                x = "blue";
+                break;
+            case "red":
+                x = "red";
+                break;
+            case "yellow":
+                x = "yellow";
+                break;
+            case "orange":
+                x = "orange";
+                break;
+            case "black":
+                x = "black";
+                break;
+            case "white":
+                x = "white";
+                break;
+        }
+        // note y is our line width we maek it wider while erasing to make it easier!
+        if (x == "white") y = 14;
+        else y = 2;
+    
+    }
+    
+    // drawring stuff //
+    function draw() {
+        // begin
+        ctx.beginPath();
+        // line info
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        // style
+        ctx.strokeStyle = x;
+        ctx.lineWidth = y;
+        // stroke
+        ctx.stroke();
+        // fin
+        ctx.closePath();
+    }
+    
+    // clear whole canvas //
+    function erase() {
+        var m = confirm("Want to clear");
+        if (m) {
+            ctx.clearRect(0, 0, w, h);
+            document.getElementById("canvasimg").style.display = "none";
+        }
+    }
+    
+    // copy canvas //
+    function save() {
+        // just kinda copise the current statuso fo canvas and sets that as teh canvas in the copy also
+        document.getElementById("canvasimg").style.border = "2px solid";
+        var dataURL = canvas.toDataURL();
+        document.getElementById("canvasimg").src = dataURL;
+        document.getElementById("canvasimg").style.display = "inline";
+        document.getElementById("undercanimg").style.display = "block";
+    }
+
+    function exportMap(){
+        const a = document.createElement("a");
+        document.body.appendChild(a);
+        a.href = canvas.toDataURL();
+        a.download = "canvas-image.png";
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    ////////////////////////////////////////////////////////////
+    function loadImage() {
+        var input, file, fr, img;
+
+        if (typeof window.FileReader !== 'function') {
+            write("The file API isn't supported on this browser yet.");
+            return;
+        }
+
+        input = document.getElementById('imgfile');
+        if (!input) {
+            write("Um, couldn't find the imgfile element.");
+        }
+        else if (!input.files) {
+            write("This browser doesn't seem to support the `files` property of file inputs.");
+        }
+        else if (!input.files[0]) {
+            write("Please select a file before clicking 'Load'");
+        }
+        else {
+            file = input.files[0];
+            fr = new FileReader();
+            fr.onload = createImage;
+            fr.readAsDataURL(file);
+        }
+
+        function createImage() {
+            img = document.createElement('img');
+            img.onload = imageLoaded;
+            img.style.display = 'none'; // If you don't want it showing
+            img.src = fr.result;
+            document.body.appendChild(img);
+        }
+
+        function imageLoaded() {
+            write(img.width + "x" + img.height);
+            // This next bit removes the image, which is obviously optional -- perhaps you want
+            // to do something with it!
+            img.parentNode.removeChild(img);
+            img = undefined;
+        }
+
+        function write(msg) {
+            var p = document.createElement('p');
+            p.innerHTML = msg;
+            document.body.appendChild(p);
+        }
+    }
+
+    ////////////////////////////////////////////////////////////
+    
+    // find our cooidnates of the mouse on screen //
+    function findxy(res, e) {
+        if (res == 'down') {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+    
+            flag = true;
+            dot_flag = true;
+            if (dot_flag) {
+                ctx.beginPath();
+                ctx.fillStyle = x;
+                ctx.fillRect(currX, currY, 2, 2);
+                ctx.closePath();
+                dot_flag = false;
+            }
+        }
+        if (res == 'up' || res == "out") {
+            flag = false;
+        }
+        if (res == 'move') {
+            if (flag) {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - canvas.offsetLeft;
+                currY = e.clientY - canvas.offsetTop;
+                draw();
+            }
+        }
+    }
+    </script>
+
+    <!-- load up the page and tool bar interface -->
+    <body style="background-color:gray;" onload="init()">
+        <!-- canvas -->
+        <div class="container" style="position: absolute;">
+            <div class="canvas-wrap" style="position: relative;">
+                <canvas id="undercan" width="500" height="400" style="position:absolute;top:10%;left:10%;border:2px solid;background: white;"></canvas>
+                <canvas id="can" width="500" height="400" style="position:absolute;top:10%;left:10%;border:2px solid; z-index: 2;"></canvas>
+                <div class="row" style="z-index: 1;">
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-right: 50px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-right: 100px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-right: 150px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-right: 200px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-right: 250px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-right: 300px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-right: 350px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-right: 400px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-right: 450px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                </div>
+                <div class="row" style="z-index: 1;">
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 50px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 50px; padding-right: 50px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 50px; padding-right: 100px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 50px; padding-right: 150px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 50px; padding-right: 200px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 50px; padding-right: 250px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 50px; padding-right: 300px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 50px; padding-right: 350px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 50px; padding-right: 400px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 50px; padding-right: 450px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                </div>
+                <div class="row" style="z-index: 1;">
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 100px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 100px; padding-right: 50px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 100px; padding-right: 100px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 100px; padding-right: 150px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 100px; padding-right: 200px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 100px; padding-right: 250px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 100px; padding-right: 300px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 100px; padding-right: 350px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 100px; padding-right: 400px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 100px; padding-right: 450px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                </div>
+                <div class="row" style="z-index: 1;">
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 150px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 150px; padding-right: 50px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 150px; padding-right: 100px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 150px; padding-right: 150px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 150px; padding-right: 200px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 150px; padding-right: 250px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 150px; padding-right: 300px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 150px; padding-right: 350px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 150px; padding-right: 400px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 150px; padding-right: 450px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                </div>
+                <div class="row" style="z-index: 1;">
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 200px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 200px; padding-right: 50px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 200px; padding-right: 100px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 200px; padding-right: 150px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 200px; padding-right: 200px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 200px; padding-right: 250px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 200px; padding-right: 300px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 200px; padding-right: 350px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 200px; padding-right: 400px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 200px; padding-right: 450px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                </div>
+                <div class="row" style="z-index: 1;">
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 250px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 250px; padding-right: 50px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 250px; padding-right: 100px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 250px; padding-right: 150px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 250px; padding-right: 200px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 250px; padding-right: 250px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 250px; padding-right: 300px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 250px; padding-right: 350px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 250px; padding-right: 400px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 250px; padding-right: 450px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                </div>
+                <div class="row" style="z-index: 1;">
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 300px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 300px; padding-right: 50px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 300px; padding-right: 100px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 300px; padding-right: 150px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 300px; padding-right: 200px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 300px; padding-right: 250px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 300px; padding-right: 300px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 300px; padding-right: 350px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 300px; padding-right: 400px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 300px; padding-right: 450px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                </div>
+                <div class="row" style="z-index: 1;">
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 350px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 350px; padding-right: 50px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 350px; padding-right: 100px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 350px; padding-right: 150px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 350px; padding-right: 200px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 350px; padding-right: 250px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 350px; padding-right: 300px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 350px; padding-right: 350px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 350px; padding-right: 400px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                    <div id="overlay" style="position: absolute; top: 10%; left:10%; padding-top: 350px; padding-right: 450px; border: solid #111 2px; height: 50px; width: 50px;"></div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- color selction -->
+        <div style="position:absolute;top:80%;left:43%;">Choose Color</div>
+        <div style="position:absolute;top:83%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>
+        <div style="position:absolute;top:83%;left:46%;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div>
+        <div style="position:absolute;top:83%;left:47%;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div>
+        <div style="position:absolute;top:85%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>
+        <div style="position:absolute;top:85%;left:46%;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div>
+        <div style="position:absolute;top:85%;left:47%;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div>
+        
+        <!-- eraser -->
+        <div style="position:absolute;top:80%;left:35%;">Eraser</div>
+        <div style="position:absolute;top:83%;left:36%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+        
+        <!-- sketched image -->
+        <canvas id="undercanimg" width="500" height="400" style="position:absolute;top:10%;left:52%;border:2px solid;background: white;display: none;"></canvas>
+        <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
+        
+        <!-- load -->
+        <form action='#' onsubmit="return false;">
+        <input type='file' id='imgfile'>
+        <input type='button' id='btnLoad' value='Load' onclick='loadImage()' style="position:absolute;top:80%;left:25%;">
+
+        
+        <!-- save -->
+        <input type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:80%;left:10%;">
+        <!-- export -->
+        <input type="button" value="exp" id="exp" size="30" onclick="exportMap()" style="position:absolute;top:80%;left:15%;">
+        <!-- clear -->
+        <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:80%;left:20%;">
+
+        <!-- to database -->
+        <form method="post" enctype="multipart/form-data">
+            <label>Title</label>
+            <input type="text" name="title">
+            <label>File Upload</label>
+            <input type="File" name="file">
+            <input type="submit" name="submit">
+        </form>
+    </body>
+    </html>
