@@ -89,13 +89,21 @@ body {
     z-index: 2;
 }
 
-.canvas-wrap canvas#undercanimg {
-    border: solid #f00 2px;
+#undercanimg {
+    border: solid #111 2px;
     background: white;
+    height: 398px;
+    width: 498px;
+    margin-left: 510px;
 }
 
-.canvas-wrap canvas#canvasimg {
-
+#canvasimg {
+    position: absolute;
+    top: 0;
+    left: 510px;
+    height: 398px;
+    width: 498px;
+    z-index: 10;
 }
 
 .div-row {
@@ -105,7 +113,7 @@ body {
     height: 50px;
 }
 
-#overlay {
+.overlay {
     position: absolute;
     border: solid #111 1px; 
     height: 50px; 
