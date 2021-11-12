@@ -109,8 +109,8 @@ ul li.user-profile-link a:hover {
     transition: 0.25s;
 }
 
-.form-signup input.signup-error {
-    border-color: #e74c3c;
+.form-signup input.signup-error, .warning {
+    border-color: #e74c3c !important;
 }
 
 .form-signup input[type = "text"]:focus, .form-signup input[type = "password"]:focus {
@@ -204,6 +204,50 @@ p.search-query-result-fail {
     border-radius: 24px;
     height: 400px;
     width: 500px;
+}
+
+/* profile.php CSS */
+
+.profile-container {
+    display: flex;
+}
+
+.user-container {
+    /* border: 2px solid #f00; */
+}
+
+.edit-profile-container {
+    /* border: 2px solid #7f8c8d; */
+}
+
+.edit-profile input[type = "submit"] {
+    border: 0;
+    width: 75%;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: #ecf0f1;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.edit-profile input[type = "submit"]:hover {
+    background: #2ecc71;
+}
+
+.edit-profile input[type = "submit"].warning:hover {
+    background: #e74c3c;
+}
+
+#edit-user-h1 {
+    color: #ecf0f1;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 /* 404.php CSS */

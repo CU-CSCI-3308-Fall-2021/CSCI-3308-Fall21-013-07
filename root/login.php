@@ -64,7 +64,7 @@
                     echo 'signup-success';
                 } 
             ?>">
-            <input type="submit" name="login-submit" value="Login"></button>
+            <input type="submit" name="login-submit" value="Login">
             <?php 
                 if ($count == 1) {
                     // 1 error in logging in
