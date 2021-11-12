@@ -63,7 +63,7 @@
                         }
                     }
                 } else {
-                    // Insert drawing
+                    // Insert drawing and increment drawing count
                     $sql = "INSERT INTO drawings (username, drawingName, dateModified, fileName) VALUES (?, ?, ?, ?);";
 
                     $stmt = mysqli_stmt_init($conn);
@@ -85,6 +85,17 @@
                         mkdir($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings");
 
                         file_put_contents($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings/".$id.'.png', $data);
+
+                        $sql = "UPDATE userinfo SET drawingCount = drawingCount + 1 WHERE username = ?;";
+                        $stmt = mysqli_stmt_init($conn);
+
+                        if (!mysqli_stmt_prepare($stmt, $sql)) {
+                            header("Location: ../create.php?error=sqlerror");
+                            exit();
+                        } else {
+                            mysqli_stmt_bind_param($stmt, "s", $_SESSION['userUid']);
+                            mysqli_stmt_execute($stmt);
+                        }
 
                         mysqli_close($conn);
                     }
@@ -113,6 +124,17 @@
                 mkdir($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings");
 
                 file_put_contents($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings/".$id.'.png', $data);
+
+                $sql = "UPDATE userinfo SET drawingCount = drawingCount + 1 WHERE username = ?;";
+                $stmt = mysqli_stmt_init($conn);
+
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    header("Location: ../create.php?error=sqlerror");
+                    exit();
+                } else {
+                    mysqli_stmt_bind_param($stmt, "s", $_SESSION['userUid']);
+                    mysqli_stmt_execute($stmt);
+                }
 
                 mysqli_close($conn);
             }

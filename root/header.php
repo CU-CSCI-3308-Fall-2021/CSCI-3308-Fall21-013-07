@@ -48,7 +48,7 @@
                         if(isset($_SESSION['userId'])) {
                             $userName = $_SESSION['userUid'];
                             echo "<div class='user-logout-container'>";
-                            echo "<li class='user-profile-link'><a href='#'>$userName</a></li>";
+                            echo "<li class='user-profile-link'><a href='profile.php?user=$userName'>$userName</a></li>";
                             echo "<li class='login-btn'><a href='includes/logout.inc.php'>Logout</a></li>";
                             echo "</div>";
                         } else {

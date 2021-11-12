@@ -13,7 +13,6 @@
             $stmt = mysqli_stmt_init($conn);
 
             if (!mysqli_stmt_prepare($stmt, $sql)) {
-
                 echo '<p>No map found!</p>';
                 exit();
 
