@@ -8,6 +8,10 @@
 <div class="map-container">
     <div class="img-container">
         <?php
+            if(!isset($_GET['map'])) {
+                header("Location: ../index.php");
+                exit();
+            }
             $fileName = $_GET['map'];
             $sql = "SELECT * FROM drawings WHERE fileName=?;";
             $stmt = mysqli_stmt_init($conn);

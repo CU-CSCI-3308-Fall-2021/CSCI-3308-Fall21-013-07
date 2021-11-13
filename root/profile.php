@@ -43,8 +43,8 @@
 
             echo '<form class="edit-profile" action="#" method="POST"><input type="submit" name="change-username-btn" value="Change username"></form>';
             echo '<form class="edit-profile" action="#" method="POST"><input type="submit" name="change-password-btn" value="Change password"></form>';
-            echo '<form class="edit-profile" action="#" method="POST"><input class="warning" type="submit" name="delete-drawings-btn" value="Delete all drawings"></form>';
-            echo '<form class="edit-profile" action="#" method="POST"><input class="warning" type="submit" name="delete-profile-btn" value="Delete profile"></form>';
+            echo '<form class="edit-profile" action="includes/deletedrawings.inc.php" method="POST"><input class="warning" type="submit" name="delete-drawings-btn" value="Delete all drawings"></form>';
+            echo '<form class="edit-profile" action="includes/delete.inc.php" method="POST"><input class="warning" type="submit" name="delete-profile-btn" value="Delete profile"></form>';
 
             echo '</div>';
         }

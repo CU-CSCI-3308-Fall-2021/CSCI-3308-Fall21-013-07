@@ -73,6 +73,7 @@
                     }
 
                 } else {
+                    $_SESSION['invalidMailUID'] = true;
                     $_SESSION['invalidPwd'] = true;
                     $_SESSION['error'] = true;
                     header("Location: ../login.php");
