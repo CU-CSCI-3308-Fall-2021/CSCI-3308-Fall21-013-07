@@ -7,9 +7,6 @@
         exit();
     }
 
-    if (isset($_SESSION['IN_SESSION'])) {
-        $session = true;
-    }
     if(isset($_SESSION['mailuser'])) {
         $mailuser = $_SESSION['mailuser'];
     }
@@ -26,52 +23,58 @@
     $mUInvalid = false;
     $pInvalid = false;
 
-    if(isset($_SESSION['error'])) {
-        if($_SESSION['empty']) {
-            // At least one field empty
-            $pInvalid = true;
-            if(empty($mailuser) && $mailuser !== "0") {
-                $muEmpty = true;
-                $count++;
+    if(isset($_SESSION['login-submit']) && !empty($_SESSION['login-submit'])) {
+        if(isset($_SESSION['error'])) {
+            if($_SESSION['empty']) {
+                // At least one field empty
+                $pInvalid = true;
+                if(empty($mailuser) && $mailuser !== "0") {
+                    $muEmpty = true;
+                    $mUInvalid = true;
+                    $pInvalid = true;
+                    $count++;
+                }
+                if($pwdLength == 0) {
+                    $pEmpty = true;
+                    $count++;
+                }
             }
-            if($pwdLength == 0) {
+            if(isset($_SESSION['invalidMailUID']) && $_SESSION['invalidMailUID']) {
                 $count++;
+                $mUInvalid = true;
+                $pInvalid = true;
             }
-        }
-        if($_SESSION['invalidMailUID']) {
-            $count++;
-            $mUInvalid = true;
-            $pInvalid = true;
+            
+            if(isset($_SESSION['invalidPwd']) && $_SESSION['invalidPwd']) {
+                $count++;
+                $pInvalid = true;
+                $mUInvalid = true;
+            }
         }
     }
-
-    session_unset();
-    session_destroy();
 ?>
 
 <main>
     <div class="signup-container">
         <form class="form-signup" action="includes/login.inc.php" method="POST">
             <h1>Login</h1>
-            <input type="text" name="mailuser" placeholder="Username or Email" value="<?php if(!empty($mailuser)) {
+            <input type="text" name="mailuser" placeholder="Username or Email" value="<?php if(!$muEmpty && isset($_SESSION['login-submit']) && $_SESSION['login-submit']) {
                 echo $mailuser;
             } ?>" class="<?php 
                 if ($pInvalid || $mUInvalid) {
                     echo 'signup-error';
-                } else if ($session) {
+                } else if (isset($_SESSION['login-submit']) && $_SESSION['login-submit'] && !$pInvalid) {
                     echo 'signup-success';
                 } 
             ?>">
             <input type="password" name="pwd" placeholder="Password" class="<?php 
-                if ($pInvalid || $mUInvalid) {
+                if (($pInvalid || $mUInvalid) && isset($_SESSION['login-submit']) && $_SESSION['login-submit']) {
                     echo 'signup-error';
-                } else if ($session) {
-                    echo 'signup-success';
-                } 
+                }
             ?>">
             <input type="submit" name="login-submit" value="Login">
             <?php 
-                if ($count > 0) {
+                if (isset($_SESSION['login-submit']) && $_SESSION['login-submit'] && $count > 0) {
                     // 1 or more errors in logging in
                     if ($muEmpty || $pEmpty) {
                         echo "<p class='signup-error'><strong>All fields are required!</strong></p>";
@@ -88,3 +91,9 @@
 
 <?php
     require "footer.php";
+    $_SESSION['login-submit'] = 0;
+    $_SESSION['mailuser'] = 0;
+    $_SESSION['pwdLength'] = 0;
+    $_SESSION['empty'] = 0;
+    $_SESSION['invalidMailUID'] = 0;
+    

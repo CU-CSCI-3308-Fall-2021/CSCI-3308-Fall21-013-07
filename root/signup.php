@@ -221,3 +221,4 @@
 
 <?php
     require "footer.php";
+    $_SESSION['IN_SESSION'] = 0;

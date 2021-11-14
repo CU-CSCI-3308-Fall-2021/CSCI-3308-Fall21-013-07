@@ -7,7 +7,7 @@
         $pwd = $_POST['pwd'];
 
         // Flash messages for variables
-        $_SESSION['IN_SESSION'] = true;
+        $_SESSION['login-submit'] = 1;
         $_SESSION['mailuser'] = htmlspecialchars($mailuser, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
         $_SESSION['pwdLength'] = strlen($pwd);
 
@@ -36,10 +36,8 @@
             $stmt = mysqli_stmt_init($conn);
 
             if (!mysqli_stmt_prepare($stmt, $sql)) {
-
                 header("Location: ../index.php?error=sqlerror");
                 exit();
-
             } else {
 
                 mysqli_stmt_bind_param($stmt, "ss", $mailuser, $mailuser);
@@ -60,6 +58,12 @@
                         session_start();
                         $_SESSION['userId'] = $row['userID'];
                         $_SESSION['userUid'] = $row['username'];
+
+                        $_SESSION['login-submit'] = 0;
+                        $_SESSION['mailuser'] = 0;
+                        $_SESSION['pwdLength'] = 0;
+                        $_SESSION['empty'] = 0;
+                        $_SESSION['invalidMailUID'] = 0;
 
                         header("Location: ../index.php");
                         exit();
