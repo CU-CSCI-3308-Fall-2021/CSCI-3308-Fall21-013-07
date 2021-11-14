@@ -35,12 +35,12 @@
                             echo '<li><a href="../index.php" class="active">Home</a></li>
                                 <li><a href="../create.php">Create</a></li>
                                 <li><a href="../search.php">Search Map</a></li>
-                                <li><a href="../#">About</a></li>';
+                                <li><a href="../index.php">About</a></li>';
                             } else {
                             echo '<li><a href="index.php" class="active">Home</a></li>
                                 <li><a href="create.php">Create</a></li>
                                 <li><a href="search.php">Search Map</a></li>
-                                <li><a href="#">About</a></li>';
+                                <li><a href="index.php">About</a></li>';
                         }
                         if(isset($_SESSION['userId'])) {
                             $userName = $_SESSION['userUid'];
