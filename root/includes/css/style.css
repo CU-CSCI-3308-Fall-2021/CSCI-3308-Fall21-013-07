@@ -59,6 +59,68 @@ ul li.user-profile-link a:hover {
 
 /* index.php CSS */
 
+.home-container {
+    width: 75%;
+    margin: 0 auto;
+    color: #ecf0f1;
+}
+
+.home-welcome, .home-user-welcome {
+    text-align: center;
+}
+
+
+.home-info {
+    font-size: 16px;
+}
+
+.home-info-container {
+    width: 67%;
+    line-height: 20px;
+    margin: 0 auto;
+}
+
+.projects-container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.projects-container hr {
+    border-top: 1px solid #bdc3c7;
+    width: 86%;
+}
+
+.project-info-title {
+    text-align: center;
+}
+
+.project-row {
+    margin: 3% auto;
+    width: 80%;
+    display: flex;
+}
+
+.project-link {
+    color: #ecf0f1;
+    margin: 0 auto;
+}
+
+.project-container {
+    height: 150px;
+    width: 150px;
+    border: 2px solid white;
+    border-radius: 24px;
+    text-align: center;
+}
+
+.project-container p {
+    padding-top: 3%;
+}
+
+.projects-container p.create-first-drawing a {
+    color: #f1c40f;
+}
+
 .test-login {
     color: #ecf0f1;
 }
@@ -173,6 +235,7 @@ p.search-query-result-fail {
 
 .result-row a {
     margin: 1.25% auto;
+    width: 100px;
 }
 
 .result {
