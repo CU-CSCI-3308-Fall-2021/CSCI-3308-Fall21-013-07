@@ -1,7 +1,5 @@
 <?php
 
-    // TODO: UPDATE USERNAME FOR DRAWING DATA TABLE
-
 
     if (isset($_POST['change-user-submit'])) {
         require "dbh.inc.php";
@@ -32,6 +30,8 @@
         $_SESSION['invalidPwd'] = false;
         $_SESSION['takenUser'] = false;
 
+        $test = false;
+
         $count = 0;
 
         if (empty($user) && $user !== "0" || empty($pwd) && $pwd !== "0") {
@@ -41,7 +41,7 @@
             $count++;
         }
 
-        if (!ctype_alnum($userName)) {
+        if (!ctype_alnum($user)) {
             $_SESSION['invalidUser'] = true;
             $_SESSION['error'] = true;
             $count++;
@@ -100,7 +100,7 @@
                                 // Now we can update username
 
                                 $_SESSION['new-user'] = $user;
-                                $sql = "UPDATE userinfo SET username=? WHERE username = ?;";
+                                $sql = "UPDATE userinfo SET username=? WHERE username=?;";
                                 $stmt = mysqli_stmt_init($conn);
 
                                 if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -114,18 +114,39 @@
                                     } else {
                                         mysqli_stmt_bind_param($stmt, "ss", $user, $username);
                                         mysqli_stmt_execute($stmt);
-                                        $_SESSION['error'] = 0;
-                                        $_SESSION['empty'] = 0;
-                                        $_SESSION['invalidUser'] = 0;
-                                        $_SESSION['invalidPwd'] = 0;
-                                        $_SESSION['sameUser'] = 0;
-                                        $_SESSION['change-user-submit'] = 0;
-                                        $_SESSION['takenUser'] = 0;
-                                        $_SESSION['new-user'] = 0;
-                                        $_SESSION['userUid'] = $user;
-                                        mysqli_close($conn);
-                                        header("Location: ../profile.php?user=$user");
-                                        exit();
+
+                                        // Now change username in drawings
+
+                                        $sql = "UPDATE drawings SET username=? WHERE username=?;";
+                                        $stmt = mysqli_stmt_init($conn);
+
+                                        if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                            header("Location: ../changeuser.php?error=sqlerror");
+                                            exit();
+                                        } else {
+                                            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                                header("Location: ../changeuser.php?error=sqlerror");
+                                                mysqli_close($conn);
+                                                exit();
+                                            } else {
+                                                mysqli_stmt_bind_param($stmt, "ss", $user, $username);
+                                                mysqli_stmt_execute($stmt);
+
+                                                $_SESSION['error'] = 0;
+                                                $_SESSION['empty'] = 0;
+                                                $_SESSION['invalidUser'] = 0;
+                                                $_SESSION['invalidPwd'] = 0;
+                                                $_SESSION['sameUser'] = 0;
+                                                $_SESSION['change-user-submit'] = 0;
+                                                $_SESSION['takenUser'] = 0;
+                                                $_SESSION['new-user'] = 0;
+                                                $_SESSION['userUid'] = $user;
+                                                
+                                                mysqli_close($conn);
+                                                header("Location: ../profile.php?user=$user");
+                                                exit();
+                                            }
+                                        }
                                     }
                                 }
                             }

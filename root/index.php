@@ -25,7 +25,7 @@
                         <h3 class="project-info-title">My projects</h3>
                         <hr>';
 
-                $sql = "SELECT * FROM drawings WHERE username='thand';";
+                $sql = "SELECT * FROM drawings WHERE username='$username';";
                 $result = mysqli_query($conn, $sql);
                 $queryResult = mysqli_num_rows($result);
                 
