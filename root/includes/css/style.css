@@ -88,6 +88,7 @@ ul li.user-profile-link a:hover {
 .projects-container hr {
     border-top: 1px solid #bdc3c7;
     width: 86%;
+    margin-bottom: 5%;
 }
 
 .project-info-title {
@@ -111,10 +112,6 @@ ul li.user-profile-link a:hover {
     border: 2px solid white;
     border-radius: 24px;
     text-align: center;
-}
-
-.project-container p {
-    padding-top: 6%;
 }
 
 .projects-container p.create-first-drawing a {

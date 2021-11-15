@@ -45,18 +45,37 @@
                         $result = mysqli_stmt_get_result($stmt);
 
                         if ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row['fileName'];
+                            $oldId = $row['fileName'];
+                            $date = date('Y-m-d H:i:s');
+                            $newId = uniqid();
 
-                            $data = $_POST['photo'];
-                            list($type, $data) = explode(';', $data);
-                            list(, $data) = explode(',', $data);
-                            $data = base64_decode($data);
+                            // Insert new fileName into data table
+                            $sql = "UPDATE drawings SET fileName=?, dateModified=? WHERE fileName=?;";
+                            $stmt = mysqli_stmt_init($conn);
 
-                            mkdir($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings");
+                            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                header("Location: ../create.php?error=sqlerror");
+                                exit();
+                            } else {
+                                mysqli_stmt_bind_param($stmt, "sss", $newId, $date, $oldId);
+                                mysqli_stmt_execute($stmt);
 
-                            file_put_contents($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings/".$id.'.png', $data);
+                                // Now delete old drawing
+                                if (unlink($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings/".$oldId.'.png')) {
+                                    // File successfuly deleted, now insert new drawing
+                                    $data = $_POST['photo'];
+                                    list($type, $data) = explode(';', $data);
+                                    list(, $data) = explode(',', $data);
+                                    $data = base64_decode($data);
 
-                            mysqli_close($conn);
+                                    file_put_contents($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings/".$newId.'.png', $data);
+
+                                    mysqli_close($conn);
+                                } else {
+                                    header("Location: ../create.php?error=error");
+                                    exit();
+                                }
+                            }
                         } else {
                             header("Location: ../create.php?error=sqlerror");
                             exit();
@@ -81,8 +100,6 @@
                         list($type, $data) = explode(';', $data);
                         list(, $data) = explode(',', $data);
                         $data = base64_decode($data);
-
-                        mkdir($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings");
 
                         file_put_contents($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings/".$id.'.png', $data);
 
@@ -120,8 +137,6 @@
                 list($type, $data) = explode(';', $data);
                 list(, $data) = explode(',', $data);
                 $data = base64_decode($data);
-
-                mkdir($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings");
 
                 file_put_contents($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings/".$id.'.png', $data);
 
