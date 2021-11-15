@@ -3,9 +3,3 @@
     session_start();
 
 ?>
-
-<main>
-
-</main>
-
-<?php
