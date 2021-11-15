@@ -20,7 +20,7 @@
             } else {
                 // Logged in
                 $username = $_SESSION['userUid'];
-                echo '<h1 class="home-user-welcome">Welcome, '.$username.'!</h1>';
+                echo '<h1 class="home-user-welcome">Welcome back, '.$username.'!</h1>';
                 echo '<div class="projects-container">
                         <h3 class="project-info-title">My projects</h3>
                         <hr>';

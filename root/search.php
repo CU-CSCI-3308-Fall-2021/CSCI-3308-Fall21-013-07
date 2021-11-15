@@ -73,7 +73,8 @@
                     $queryResult = mysqli_num_rows($result);
 
                     if ($queryResult > 0) {
-                        echo "<p class='search-query-result'>There are ".$queryResult." drawings!</p>";
+                        if ($queryResult == 1) echo "<p class='search-query-result'>There is ".$queryResult." result!</p>";
+                        else echo "<p class='search-query-result'>There are ".$queryResult." results!</p>";
                         $counter = 1;
                         $resultString = "";
                         while ($row = mysqli_fetch_assoc($result)) {

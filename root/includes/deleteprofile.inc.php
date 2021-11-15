@@ -2,7 +2,7 @@
     session_start();
     require "dbh.inc.php";
 
-    if (!isset($_SESSION['userUid'])) {
+    if (!isset($_SESSION['userUid']) || !isset($_POST['delete-profile-submit'])) {
         header("Location: ../profile.php");
         exit();
     }

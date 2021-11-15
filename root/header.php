@@ -31,30 +31,33 @@
             <nav>
                 <ul>
                     <?php
-                        if ($currPage == "map.php") {
+                        if ($currPage == "map.php" || $currPage == "editdrawing.php") {
                             echo '<li><a href="../index.php" class="active">Home</a></li>
                                 <li><a href="../create.php">Create</a></li>
-                                <li><a href="../search.php">Search Map</a></li>
-                                <li><a href="../index.php">About</a></li>';
+                                <li><a href="../search.php">Search Map</a></li>';
                             } else {
                                 echo '<li><a href="index.php" class="active">Home</a></li>
                                     <li><a href="create.php">Create</a></li>
-                                    <li><a href="search.php">Search Map</a></li>
-                                    <li><a href="index.php">About</a></li>';
+                                    <li><a href="search.php">Search Map</a></li>';
                         }
                         if(isset($_SESSION['userId'])) {
                             $userName = $_SESSION['userUid'];
                             echo "<div class='user-logout-container'>";
-                            if ($currPage == "map.php") {
+                            if ($currPage == "map.php" || $currPage == "editdrawing.php") {
                                 echo "<li class='user-profile-link'><a href='../profile.php?user=$userName'>$userName</a></li>";
+                                echo "<li class='login-btn'><a href='../includes/logout.inc.php'>Logout</a></li>";
                             } else {
                                 echo "<li class='user-profile-link'><a href='profile.php?user=$userName'>$userName</a></li>";
+                                echo "<li class='login-btn'><a href='includes/logout.inc.php'>Logout</a></li>";
                             }
-                            echo "<li class='login-btn'><a href='includes/logout.inc.php'>Logout</a></li>";
                             echo "</div>";
                         } else {
                             echo "<div class='user-logout-container'>";
-                            echo "<li class='login-btn'><a href='signup.php'>Sign Up</a></li>";
+                            if ($currPage == "map.php" || $currPage == "editdrawing.php") {
+                                echo "<li class='login-btn'><a href='../signup.php'>Sign Up</a></li>";
+                            } else {
+                                echo "<li class='login-btn'><a href='signup.php'>Sign Up</a></li>";
+                            }
                             echo "</div>";
                         }
                     ?>

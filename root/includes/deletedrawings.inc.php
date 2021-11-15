@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION['userUid'])) {
+    if (!isset($_SESSION['userUid']) || !isset($_POST['delete-drawings-submit'])) {
         header("Location: ../index.php");
         exit();
     }

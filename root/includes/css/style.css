@@ -221,52 +221,47 @@ p.search-query-result-fail {
     padding-top: 2%;
 }
 
-.search-results {
-    border-radius: 24px;
-    margin: 2% auto;
-    width: 75%;
-}
-
-.result-row {
-    display: flex;
-    height: 10%;
-    margin-bottom: 2%;
-}
-
-.result-row a {
-    margin: 1.25% auto;
-    width: 100px;
-}
-
-.result {
-    color: #ecf0f1;
-    border: 2px solid #ecf0f1;
-    border-radius: 24px;
-    padding: 10%;
-}
-
 /* map.php CSS */
 
-.map-container {
+.map-page-container {
     width: 75%;
-    height: 1000px;
+    padding-bottom: 4%;
     margin: 0 auto;
-    border: solid #fff 2px;
+    color: #ecf0f1;
+}
+
+.drawing-title {
+    color: #ecf0f1;
+    text-align: center;
+}
+
+.map-container {
+    margin: 0 auto;
     display: flex;
+    margin-top: -4%;
 }
 
 .img-container {
-    width: 25%;
-    margin-left: 10%;
-    margin-top: 10%;
+    min-height: 400px;
+    width: 500px;
+    margin-left: 7%;
+    margin-top: 7%;
 }
 
 .map-img {
-    margin: 0 auto;
-    border: solid #fff 2px;
-    border-radius: 24px;
     height: 400px;
     width: 500px;
+    background-color: white;
+}
+
+.map-info {
+    width: 25%;
+    margin-top: 7%;
+    margin: auto auto;
+}
+
+.map-info p {
+    text-align: center;
 }
 
 /* profile.php CSS */
