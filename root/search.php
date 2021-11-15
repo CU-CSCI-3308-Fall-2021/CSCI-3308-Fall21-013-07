@@ -24,37 +24,39 @@
 
                     if ($queryResult > 0) {
                         // There are 1 or more search results
-                        echo "<p class='search-query-result'>There are ".$queryResult." results!</p>";
+                        if ($queryResult == 1) echo "<p class='search-query-result'>There is ".$queryResult." result!</p>";
+                        else echo "<p class='search-query-result'>There are ".$queryResult." results!</p>";
                         $counter = 1;
                         $resultString = "";
                         while ($row = mysqli_fetch_assoc($result)) {
+                            $date = strtotime($row['dateModified']);
                             if ($counter == 1) {
-                                $resultString = $resultString . "<div class='result-row'><a href='map/map?map=".$row['fileName']."' class='search-result-link'><div class='result'>
-                                                    <p>".$row['username']."</p>
-                                                    <p>".$row['drawingName']."</p>
-                                                    <p>".$row['dateModified']."</p>
-                                                    </div></a>";
+                                $resultString = $resultString . "<div class='project-row'><a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
+                                                        <p>".$row['username']."</p>
+                                                        <p>".$row['drawingName']."</p>
+                                                        <p>".date('F j, Y', $date)."</p>
+                                                        </div></a>";
                                 $counter++;
                             } else if ($counter == 4) {
-                                $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='search-result-link'><div class='result'>
-                                                                    <p>".$row['username']."</p>
-                                                                    <p>".$row['drawingName']."</p>
-                                                                    <p>".$row['dateModified']."</p>
-                                                                    </div></a></div>";
+                                $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
+                                                        <p>".$row['username']."</p>
+                                                        <p>".$row['drawingName']."</p>
+                                                        <p>".date('F j, Y', $date)."</p>
+                                                        </div></a></div>";
                                 $counter = 1;
                             } else {
-                                $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='search-result-link'><div class='result'>
-                                                                    <p>".$row['username']."</p>
-                                                                    <p>".$row['drawingName']."</p>
-                                                                    <p>".$row['dateModified']."</p>
-                                                                    </div></a>";
+                                $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
+                                                        <p>".$row['username']."</p>
+                                                        <p>".$row['drawingName']."</p>
+                                                        <p>".date('F j, Y', $date)."</p>
+                                                        </div></a>";
                                 $counter++;
                             }
                         }
                         $counter--;
                         if ($counter < 4 && $counter != 0) {
                             while ($counter < 4) {
-                                $resultString = $resultString . "<div class='result' style='border: none;'></div>";
+                                $resultString = $resultString . "<a class='project-link'><div class='project-container' style='border: none;'></div></a>";
                                 $counter++;
                             }
                             $resultString = $resultString . "</div>";
@@ -75,33 +77,34 @@
                         $counter = 1;
                         $resultString = "";
                         while ($row = mysqli_fetch_assoc($result)) {
+                            $date = strtotime($row['dateModified']);
                             if ($counter == 1) {
-                                $resultString = $resultString . "<div class='result-row'><a href='map/map?map=".$row['fileName']."' class='search-result-link'><div class='result'>
-                                                    <p>".$row['username']."</p>
-                                                    <p>".$row['drawingName']."</p>
-                                                    <p>".$row['dateModified']."</p>
-                                                    </div></a>";
+                                $resultString = $resultString . "<div class='project-row'><a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
+                                                        <p>".$row['username']."</p>
+                                                        <p>".$row['drawingName']."</p>
+                                                        <p>".date('F j, Y', $date)."</p>
+                                                        </div></a>";
                                 $counter++;
                             } else if ($counter == 4) {
-                                $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='search-result-link'><div class='result'>
-                                                                    <p>".$row['username']."</p>
-                                                                    <p>".$row['drawingName']."</p>
-                                                                    <p>".$row['dateModified']."</p>
-                                                                    </div></a></div>";
+                                $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
+                                                        <p>".$row['username']."</p>
+                                                        <p>".$row['drawingName']."</p>
+                                                        <p>".date('F j, Y', $date)."</p>
+                                                        </div></a></div>";
                                 $counter = 1;
                             } else {
-                                $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='search-result-link'><div class='result'>
-                                                                    <p>".$row['username']."</p>
-                                                                    <p>".$row['drawingName']."</p>
-                                                                    <p>".$row['dateModified']."</p>
-                                                                    </div></a>";
+                                $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
+                                                        <p>".$row['username']."</p>
+                                                        <p>".$row['drawingName']."</p>
+                                                        <p>".date('F j, Y', $date)."</p>
+                                                        </div></a>";
                                 $counter++;
                             }
                         }
                         $counter--;
                         if ($counter < 4 && $counter != 0) {
                             while ($counter < 4) {
-                                $resultString = $resultString . "<div class='result' style='border: none;'></div>";
+                                $resultString = $resultString . "<a class='project-link'><div class='project-container' style='border: none;'></div></a>";
                                 $counter++;
                             }
                             $resultString = $resultString . "</div>";
@@ -122,33 +125,34 @@
                     $counter = 1;
                     $resultString = "";
                     while ($row = mysqli_fetch_assoc($result)) {
+                        $date = strtotime($row['dateModified']);
                         if ($counter == 1) {
-                            $resultString = $resultString . "<div class='result-row'><a href='map/map?map=".$row['fileName']."' class='search-result-link'><div class='result'>
-                                                <p>".$row['username']."</p>
-                                                <p>".$row['drawingName']."</p>
-                                                <p>".$row['dateModified']."</p>
-                                                </div></a>";
+                            $resultString = $resultString . "<div class='project-row'><a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
+                                                    <p>".$row['username']."</p>
+                                                    <p>".$row['drawingName']."</p>
+                                                    <p>".date('F j, Y', $date)."</p>
+                                                    </div></a>";
                             $counter++;
                         } else if ($counter == 4) {
-                            $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='search-result-link'><div class='result'>
-                                                                <p>".$row['username']."</p>
-                                                                <p>".$row['drawingName']."</p>
-                                                                <p>".$row['dateModified']."</p>
-                                                                </div></a></div>";
+                            $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
+                                                    <p>".$row['username']."</p>
+                                                    <p>".$row['drawingName']."</p>
+                                                    <p>".date('F j, Y', $date)."</p>
+                                                    </div></a></div>";
                             $counter = 1;
                         } else {
-                            $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='search-result-link'><div class='result'>
-                                                                <p>".$row['username']."</p>
-                                                                <p>".$row['drawingName']."</p>
-                                                                <p>".$row['dateModified']."</p>
-                                                                </div></a>";
+                            $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
+                                                    <p>".$row['username']."</p>
+                                                    <p>".$row['drawingName']."</p>
+                                                    <p>".date('F j, Y', $date)."</p>
+                                                    </div></a>";
                             $counter++;
                         }
                     }
                     $counter--;
                     if ($counter < 4 && $counter != 0) {
                         while ($counter < 4) {
-                            $resultString = $resultString . "<div class='result' style='border: none;'></div>";
+                            $resultString = $resultString . "<a class='project-link'><div class='project-container' style='border: none;'></div></a>";
                             $counter++;
                         }
                         $resultString = $resultString . "</div>";

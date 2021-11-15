@@ -33,25 +33,26 @@
                     $counter = 1;
                     $resultString = "";
                     while ($row = mysqli_fetch_assoc($result)) {
+                        $date = strtotime($row['dateModified']);
                         if ($counter == 1) {
                             $resultString = $resultString . "<div class='project-row'><a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
                                                     <p>".$row['username']."</p>
                                                     <p>".$row['drawingName']."</p>
-                                                    <p>".$row['dateModified']."</p>
+                                                    <p>".date('F j, Y', $date)."</p>
                                                     </div></a>";
                             $counter++;
                         } else if ($counter == 4) {
                             $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
                                                     <p>".$row['username']."</p>
                                                     <p>".$row['drawingName']."</p>
-                                                    <p>".$row['dateModified']."</p>
+                                                    <p>".date('F j, Y', $date)."</p>
                                                     </div></a></div>";
                             $counter = 1;
                         } else {
                             $resultString = $resultString . "<a href='map/map?map=".$row['fileName']."' class='project-link'><div class='project-container'>
                                                     <p>".$row['username']."</p>
                                                     <p>".$row['drawingName']."</p>
-                                                    <p>".$row['dateModified']."</p>
+                                                    <p>".date('F j, Y', $date)."</p>
                                                     </div></a>";
                             $counter++;
                         }

@@ -106,15 +106,15 @@ ul li.user-profile-link a:hover {
 }
 
 .project-container {
-    height: 150px;
-    width: 150px;
+    height: 175px;
+    width: 175px;
     border: 2px solid white;
     border-radius: 24px;
     text-align: center;
 }
 
 .project-container p {
-    padding-top: 3%;
+    padding-top: 6%;
 }
 
 .projects-container p.create-first-drawing a {
