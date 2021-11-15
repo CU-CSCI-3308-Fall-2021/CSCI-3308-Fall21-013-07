@@ -1,0 +1,18 @@
+.image-preview{
+    width: 300px;
+    min-height: 100px;
+    border: 2px solid rgb(0, 0, 0);
+    margin-top: 15px;
+
+    /* default text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #CCCCCC;
+}
+.image-preview__image{
+    display: none;
+    width: 100%;
+
+}

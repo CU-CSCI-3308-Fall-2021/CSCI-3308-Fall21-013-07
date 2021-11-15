@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+    <title>loadTest</title>
+    <!-- <link rel="stylesheet" type="text/css" href="../recs/css/loadTest.css">
+    <script type="text/javascript" src="../recs/js/loadTest.js"></script> -->
+
+    <style>
+        .image-preview{
+            width: 300px;
+            min-height: 100px;
+            border: 2px solid rgb(0, 0, 0);
+            margin-top: 15px;
+
+            /* default text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #CCCCCC;
+        }
+        .image-preview__image{
+            display: none;
+            width: 100%;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Image Preview</h1>
+
+    <input type="file" name="inpFile" id="inpFile">
+        <div class="image-preview" id ="imagePreview">
+            <img src="" alt="Image Preview" class="image-preview__image">
+            <span class="image-preview__default-text">Image Preview</span>
+    </div>
+    
+    <script>
+        const inpFile = document.getElementById("inpFile");
+        const previewContainter = document.getElementById("imagePreview");
+        const previewImage = previewContainter.querySelector(".image-preview__image");
+        const previewDefaultText = previewContainter.querySelector(".image-preview__default-text");
+
+        inpFile.addEventListener("change", function() {
+            const file = this.files[0];
+
+            // console.log(file);
+
+            if (file) {
+                const reader = new FileReader();
+
+                previewDefaultText.style.display = "none";
+                previewImage.style.display = "block";
+
+                reader.addEventListener("load", function () {
+                    previewImage.setAttribute("src", this.result);
+                });
+
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
