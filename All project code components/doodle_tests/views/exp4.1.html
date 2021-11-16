@@ -4,26 +4,6 @@
         <title>Canvas App</title>
         <link rel="stylesheet" type="text/css" href="../recs/css/exp4.1.css">
         <script type="text/javascript" src="../recs/js/exp4.1.js"></script>
-        <style>
-            .image-preview{
-                width: 300px;
-                min-height: 100px;
-                border: 2px solid rgb(0, 0, 0);
-                margin-top: 15px;
-    
-                /* default text */
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: bold;
-                color: #CCCCCC;
-            }
-            .image-preview__image{
-                display: none;
-                width: 100%;
-    
-            }
-        </style>
         
     </head>
 
@@ -79,50 +59,17 @@
             </div>
         </div>
 
-        
-        <!-- ----------------------------------- -->
-        <!-- ----------------------------------- -->
-        <!-- load -->
         <h1>Image Preview</h1>
-        <input type="file" name="inpFile" id="inpFile">
-            
-        <script>
-            // load
-            const inpFile = document.getElementById("inpFile");
-            const previewContainter = document.getElementById("imagePreview");
-            const previewImage = previewContainter.querySelector(".image-preview__image");
-            const previewDefaultText = previewContainter.querySelector(".image-preview__default-text");
-
-            inpFile.addEventListener("change", function() {
-                const file = this.files[0];
-
-                // console.log(file);
-
-                if (file) {
-                    const reader = new FileReader();
-
-                    previewDefaultText.style.display = "none";
-                    previewImage.style.display = "block";
-
-                    reader.addEventListener("load", function () {
-                        previewImage.setAttribute("src", this.result);
-                    });
-
-                    reader.readAsDataURL(file);
-                }
-            });
-        </script>
-        <!-- ----------------------------------- -->
-        <!-- ----------------------------------- -->
 
         <!-- canvas -->
         <div class="canvas-container">
-            <div class="image-preview" id ="imagePreview">
-                <img src="" alt="Image Preview" class="image-preview__image">
-                <span class="image-preview__default-text">Image Preview</span>
-            </div>
+            
             
             <div class="canvas-wrap">
+                <div class="image-preview" id="imagePreview">
+                    <img src="https://i.pinimg.com/736x/89/41/40/8941408fe5575d61409cd1af209445e3.jpg" alt="Image Preview" class="image-preview__image">
+                    <span class="image-preview__default-text">Image Preview</span>
+                </div>
                 <canvas id="undercan" width="498" height="398"></canvas>
                 <canvas id="can" width="498" height="398"></canvas>
                 <div class="div-row">
@@ -229,6 +176,42 @@
             <canvas id="undercanimg" width="498" height="398" style="margin-left: 510px; border:#111 2px solid;background: white;display: none;"></canvas>
             <img id="canvasimg" style="margin-left: 510px; display:none;">
         </div>
+
+
+        <!-- ----------------------------------- -->
+        <!-- ----------------------------------- -->
+        <!-- load -->
+        
+        <input type="file" name="inpFile" id="inpFile" class="file-input">
+            
+        <script>
+            // load
+            const inpFile = document.getElementById("inpFile");
+            const previewContainter = document.getElementById("imagePreview");
+            const previewImage = previewContainter.querySelector(".image-preview__image");
+            const previewDefaultText = previewContainter.querySelector(".image-preview__default-text");
+
+            inpFile.addEventListener("change", function() {
+                const file = this.files[0];
+
+                // console.log(file);
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    previewDefaultText.style.display = "none";
+                    previewImage.style.display = "block";
+
+                    reader.addEventListener("load", function () {
+                        previewImage.setAttribute("src", this.result);
+                    });
+
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
+        <!-- ----------------------------------- -->
+        <!-- ----------------------------------- -->
         
         
     </body>

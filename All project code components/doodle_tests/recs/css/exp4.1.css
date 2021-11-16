@@ -53,10 +53,6 @@ body {
     padding: 5px;
 }
 
-.eraser-container p {
-    
-}
-
 .eraser {
     width: 15px;
     height: 15px;
@@ -80,7 +76,6 @@ body {
 .canvas-wrap canvas#undercan {
     position: absolute;
     border: #111 2px solid;
-    background: white;
 }
 
 .canvas-wrap canvas#can {
@@ -91,7 +86,6 @@ body {
 
 .canvas-wrap canvas#undercanimg {
     border: solid #f00 2px;
-    background: white;
 }
 
 .canvas-wrap canvas#canvasimg {
@@ -99,10 +93,11 @@ body {
 }
 
 .image-preview{
-    width: 100%;
-    min-height: 100px;
-    border: 2px solid rgb(0, 0, 0);
-    margin-top: 15px;
+    position: absolute;
+    width: 500px;
+    min-height: 400px;
+    z-index: -5;
+    background: white;
 
     /* default text */
     display: flex;
@@ -111,6 +106,7 @@ body {
     font-weight: bold;
     color: #CCCCCC;
 }
+
 .image-preview__image{
     display: none;
     width: 100%;
@@ -128,5 +124,11 @@ body {
     border: solid #111 1px; 
     height: 50px; 
     width: 50px;
+}
+
+.file-input {
+    position: absolute;
+    top: 75%;
+    right: 25%;
 }
 
