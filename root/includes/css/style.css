@@ -10,7 +10,7 @@ body {
 /* Nav Bar Stuff */
 
 main {
-    padding-top: 5%;
+    padding-top: 6%;
 }
 
 ul {
@@ -131,7 +131,7 @@ ul li.user-profile-link a:hover {
 
 .signup-container {
     margin: 0 auto;
-    width: 30%;
+    width: 40%;
     text-align: center;
 }
 

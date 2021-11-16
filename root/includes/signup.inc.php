@@ -13,7 +13,6 @@
         $pwdRepeat = $_POST['pwd-repeat'];
 
         // Flash messages of form variables
-        $_SESSION['IN_SESSION'] = true;
         // htmlspecialchars used to interpret content outputted to HTML as content, not HTML --> important for security
         $_SESSION['fN'] = htmlspecialchars($firstName, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
         $_SESSION['lN'] = htmlspecialchars($lastName, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
@@ -156,6 +155,16 @@
                                         session_start();
                                         $_SESSION['userId'] = $row['userID'];
                                         $_SESSION['userUid'] = $row['username'];
+                                        $_SESSION['error'] = false;
+                                        $_SESSION['empty'] = false;
+                                        $_SESSION['invalidFN'] = false;
+                                        $_SESSION['invalidLN'] = false;
+                                        $_SESSION['invalidUser'] = false;
+                                        $_SESSION['invalidEmail'] = false;
+                                        $_SESSION['invalidPwd'] = false;
+                                        $_SESSION['invalidPwdLength'] = false;
+                                        $_SESSION['takenUser'] = false;
+                                        $_SESSION['takenEmail'] = false;
     
                                         header("Location: ../index.php?");
                                         exit();

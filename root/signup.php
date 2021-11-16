@@ -13,9 +13,6 @@
         // Error handling
         
         // Grab form values
-        if (isset($_SESSION['IN_SESSION'])) {
-            $session = true;
-        }
         if(isset($_SESSION['fN'])) {
             $fN = $_SESSION['fN'];
         }
@@ -139,7 +136,7 @@
             } ?>" class="<?php 
                 if ($fInvalid) {
                     echo 'signup-error';
-                } else if ($session) {
+                } else if (isset($_SESSION['signup-submit']) && $_SESSION['signup-submit'] && !$pInvalid) {
                     echo 'signup-success';
                 }
             ?>">
@@ -148,7 +145,7 @@
             } ?>" class="<?php 
                 if ($lInvalid) {
                     echo 'signup-error';
-                } else if ($session) {
+                } else if (isset($_SESSION['signup-submit']) && $_SESSION['signup-submit'] && !$pInvalid) {
                     echo 'signup-success';
                 }
             ?>">
@@ -157,7 +154,7 @@
             } ?>" class="<?php 
                 if ($uInvalid || $takenUser) {
                     echo 'signup-error';
-                } else if ($session) {
+                } else if (isset($_SESSION['signup-submit']) && $_SESSION['signup-submit'] && !$pInvalid) {
                     echo 'signup-success';
                 }
             ?>">
@@ -166,23 +163,19 @@
             } ?>" class="<?php 
                 if ($eInvalid || $takenEmail) {
                     echo 'signup-error';
-                } else if ($session) {
+                } else if (isset($_SESSION['signup-submit']) && $_SESSION['signup-submit'] && !$pInvalid) {
                     echo 'signup-success';
                 }
             ?>">
             <input type="password" name="pwd" placeholder="Password" class="<?php 
                 if ($pInvalid) {
                     echo 'signup-error';
-                } else if ($session) {
-                    echo 'signup-success';
                 }
             ?>">
             <input type="password" name="pwd-repeat" placeholder="Repeat Password" class="<?php 
                 if ($pInvalid) {
                     echo 'signup-error';
-                } else if ($session) {
-                    echo 'signup-success';
-                } 
+                }
             ?>">
             <input type="submit" name="signup-submit" value="Sign Up"></button>
             <?php
@@ -221,4 +214,13 @@
 
 <?php
     require "footer.php";
-    $_SESSION['IN_SESSION'] = 0;
+    $_SESSION['error'] = false;
+    $_SESSION['empty'] = false;
+    $_SESSION['invalidFN'] = false;
+    $_SESSION['invalidLN'] = false;
+    $_SESSION['invalidUser'] = false;
+    $_SESSION['invalidEmail'] = false;
+    $_SESSION['invalidPwd'] = false;
+    $_SESSION['invalidPwdLength'] = false;
+    $_SESSION['takenUser'] = false;
+    $_SESSION['takenEmail'] = false;
