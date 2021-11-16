@@ -39,7 +39,7 @@
                 unlink("../map/drawings/".$fileNames[$i].".png");
             }
 
-            // Files deletede in directory -> delete in DB
+            // Files deleted in directory -> delete in DB
             $sql = "DELETE FROM drawings WHERE username=?;";
 
             $stmt = mysqli_stmt_init($conn);

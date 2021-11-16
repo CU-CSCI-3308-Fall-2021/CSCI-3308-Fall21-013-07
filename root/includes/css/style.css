@@ -19,6 +19,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    border-bottom: 2px solid #7f8c8d;
     position: fixed;
     top: 0;
     left: 0;
