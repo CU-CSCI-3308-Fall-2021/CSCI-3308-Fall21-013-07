@@ -12,7 +12,8 @@
         <?php
             // Grab current URL
             $currPage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
-            echo '<link rel="stylesheet" type="text/css" href="/CSCI-3308-Fall21-013-07/root/includes/css/style.css"/>';
+            // uniqid() used to force CSS to be updated
+            echo '<link rel="stylesheet" type="text/css" href="/CSCI-3308-Fall21-013-07/root/includes/css/style.css?'.uniqid().'"/>';
             if ($currPage == "create.php") {
                 echo '<script type="text/javascript" src="js/create.js"></script>';
                 echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';

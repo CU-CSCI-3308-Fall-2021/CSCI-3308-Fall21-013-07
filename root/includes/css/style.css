@@ -114,6 +114,10 @@ ul li.user-profile-link a:hover {
     text-align: center;
 }
 
+.project-container p {
+    padding-top: 7%;
+}
+
 .projects-container p.create-first-drawing a {
     color: #f1c40f;
 }
@@ -148,7 +152,7 @@ ul li.user-profile-link a:hover {
     color: #ecf0f1;
 }
 
-.form-signup p a {
+.form-signup p a, .map-page-container p a {
     color: #f1c40f;
 }
 
