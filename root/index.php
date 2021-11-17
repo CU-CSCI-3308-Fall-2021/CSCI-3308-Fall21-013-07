@@ -9,14 +9,22 @@
         <?php
             if(!isset($_SESSION['userId'])) {
                 // User not logged in
-                echo '<h1 class="home-welcome">Welcome to Dungeon Designer!</h1>
-                        <div class="home-info-container">
-                            <p class="home-info">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus euismod efficitur. Fusce id nulla at purus cursus posuere. Nulla et feugiat ante. Proin rhoncus, est imperdiet consequat vulputate, erat erat dictum urna, et posuere urna velit ultricies felis. Mauris venenatis sapien et dolor commodo, at pellentesque eros vestibulum. Fusce eu velit fermentum, faucibus leo vitae, feugiat lacus. In tincidunt a quam non convallis. Maecenas tristique, magna sed molestie semper, est sem porttitor diam, id ultrices ipsum enim blandit diam. Sed ut laoreet odio. Mauris in pulvinar enim. Morbi placerat mattis aliquam. Vestibulum euismod et felis nec malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus id mollis magna.
-                                <br><br>
-                                Mauris mollis tempus quam. Nullam sollicitudin libero a libero pulvinar, ac convallis enim semper. Ut tempus mi vitae lectus rutrum, quis vulputate magna malesuada. Integer pharetra, quam et vulputate mattis, dolor velit eleifend nunc, vitae commodo metus neque tristique leo. Mauris eget ipsum malesuada diam laoreet cursus. Integer placerat lacus sit amet interdum tristique. Nunc lectus lorem, sagittis sit amet massa quis, luctus congue purus. Phasellus in orci congue, iaculis odio quis, fermentum lectus. Aliquam eget convallis massa, at dignissim dui. Phasellus tempor vestibulum consectetur. Vestibulum dapibus purus risus, nec laoreet mauris vestibulum vehicula. Nulla vitae vehicula tortor. 
+                echo "
+                        <div class='home-info-container'>
+                        <h1 class='home-welcome'>Welcome to Dungeon Designer!</h1><br>
+                            <h2>What is Doodle Designer?</h2>
+                            <p class='home-info'>
+                            Doodle Designer was created to provide a way to create simple, fun doodles and share them with others, or just save them for later.
+                            With the increase in popularity of online drawing games, there's a particular uniqueness that comes with these drawings. Whether you
+                            want to just practice drawing with a mouse, create simple and unique sketches, or even use it for more serious purposes, doodle designer
+                            provides a way to do so.</p>
+                            <h2>How did we make this?</h2>
+                            <p class='home-info'>
+                            Doodle Designer was created by a group of 4 CU Boulder students, during our CSCI3308 course. This project provided us to get accustomed with
+                            frontend and backend development, various different languages, and the whole workflow of a group in general. While the project still lacks a few features,
+                            our vision for Doodle Designer is more social, and will involve sharing doodles with others at its core.
                             </p>
-                        </div>';
+                        </div>";
             } else {
                 // Logged in
                 $username = $_SESSION['userUid'];

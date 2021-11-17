@@ -71,12 +71,19 @@ ul li.user-profile-link a:hover {
     color: #ecf0f1;
 }
 
+.home-info-container {
+    border: 2px solid #ecf0f1;
+    border-radius: 24px;
+    padding: 2%;
+}
+
 .home-welcome, .home-user-welcome {
     text-align: center;
 }
 
 .home-info {
     font-size: 16px;
+    line-height: 20px;
 }
 
 .home-info-container {
@@ -387,6 +394,7 @@ p.search-query-result-fail {
     justify-content: center;
     margin: 0 auto;
     width: 75%;
+    height: 30%;
 }
 
 .edit-profile-container {

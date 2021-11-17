@@ -150,6 +150,15 @@ function exportMap(){
     document.body.removeChild(a);
 }
 
+function exportMap2(){
+    const a = document.createElement("a");
+    document.body.appendChild(a);
+    a.href = canvas.toDataURL();
+    a.download = document.getElementById("drawingTitle").value != "" ? document.getElementById("drawingTitle").value : document.getElementById("oldTitle").value;
+    a.click();
+    document.body.removeChild(a);
+}
+
 ////////////////////////////////////////////////////////////
 function loadImage() {
     var input, file, fr, img;

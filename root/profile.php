@@ -24,7 +24,6 @@
                         $date = strtotime($row['registrationDate']);
                         $email = $row['email'];
                         $drawingCount = $row['drawingCount'];
-
                         echo "<p>User: ".$userName."</p><br>";
                         echo "<p>Email: ".$email."</p><br>";
                         echo "<p>Number of drawings: ".$drawingCount."</p><br>";

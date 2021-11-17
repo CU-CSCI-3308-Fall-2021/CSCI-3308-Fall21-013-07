@@ -38,7 +38,7 @@
                                 <hr class="create-hr btn-hr">
                                 <div class="other-btn-container">
                                     <input class="create-btn first-btn" type="button" value="Save" id="btn" onclick="save()">
-                                    <input class="create-btn" type="button" value="Exp" id="exp" onclick="exportMap()">
+                                    <input class="create-btn" type="button" value="Export" id="exp" onclick="exportMap()">
                                     <input class="create-btn" type="button" value="Clear" id="clr" onclick="erase()">
                                 </div>
                             </div>

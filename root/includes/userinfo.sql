@@ -7,7 +7,5 @@ CREATE TABLE userinfo (
     pwd CHAR(60),
     drawingCount int,
     registrationDate DATETIME,
-    lastLoginTime DATETIME,
-    dailyStreak int,
     PRIMARY KEY (userID)
 );
