@@ -160,53 +160,6 @@ function exportMap2(){
 }
 
 ////////////////////////////////////////////////////////////
-function loadImage() {
-    var input, file, fr, img;
-
-    if (typeof window.FileReader !== 'function') {
-        write("The file API isn't supported on this browser yet.");
-        return;
-    }
-
-    input = document.getElementById('imgfile');
-    if (!input) {
-        write("Um, couldn't find the imgfile element.");
-    }
-    else if (!input.files) {
-        write("This browser doesn't seem to support the `files` property of file inputs.");
-    }
-    else if (!input.files[0]) {
-        write("Please select a file before clicking 'Load'");
-    }
-    else {
-        file = input.files[0];
-        fr = new FileReader();
-        fr.onload = createImage;
-        fr.readAsDataURL(file);
-    }
-
-    function createImage() {
-        img = document.createElement('img');
-        img.onload = imageLoaded;
-        img.style.display = 'none'; // If you don't want it showing
-        img.src = fr.result;
-        document.body.appendChild(img);
-    }
-
-    function imageLoaded() {
-        write(img.width + "x" + img.height);
-        // This next bit removes the image, which is obviously optional -- perhaps you want
-        // to do something with it!
-        img.parentNode.removeChild(img);
-        img = undefined;
-    }
-
-    function write(msg) {
-        var p = document.createElement('p');
-        p.innerHTML = msg;
-        document.body.appendChild(p);
-    }
-}
 
 function writeImage() {
 
