@@ -8,6 +8,7 @@
             echo '<form class="drawing-name-form" method="POST">
                     <h1>Choose a name for your drawing</h1>
                     <input type="text" id="drawingTitle" name="drawingName" placeholder="Enter a name...">
+                    <input style="display: none;" type="text" id="randNum" name="randNum" value="'.uniqid().'">
                 </form>
             
                 <div class="main-create-container">

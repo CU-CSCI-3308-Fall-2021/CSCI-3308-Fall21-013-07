@@ -4,6 +4,7 @@
 
     $userName = $_SESSION['userUid'];
     $name = $_POST['drawingName'];
+    $newId = $_POST['id'];
 
     $sql = "SELECT username FROM drawings WHERE username = ?;";
     $stmt = mysqli_stmt_init($conn);
@@ -47,7 +48,6 @@
                         if ($row = mysqli_fetch_assoc($result)) {
                             $oldId = $row['fileName'];
                             $date = date('Y-m-d H:i:s');
-                            $newId = uniqid();
 
                             // Insert new fileName into data table
                             $sql = "UPDATE drawings SET fileName=?, dateModified=? WHERE fileName=?;";
@@ -92,8 +92,7 @@
                         exit();
                     } else {
                         $date = date('Y-m-d H:i:s');
-                        $id = uniqid();
-                        mysqli_stmt_bind_param($stmt, "ssss", $_SESSION['userUid'], $name, $date, $id);
+                        mysqli_stmt_bind_param($stmt, "ssss", $_SESSION['userUid'], $name, $date, $newId);
                         mysqli_stmt_execute($stmt); 
 
                         $data = $_POST['photo'];
@@ -101,7 +100,7 @@
                         list(, $data) = explode(',', $data);
                         $data = base64_decode($data);
 
-                        file_put_contents($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings/".$id.'.png', $data);
+                        file_put_contents($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings/".$newId.'.png', $data);
 
                         $sql = "UPDATE userinfo SET drawingCount = drawingCount + 1 WHERE username = ?;";
                         $stmt = mysqli_stmt_init($conn);
@@ -129,8 +128,7 @@
                 exit();
             } else {
                 $date = date('Y-m-d H:i:s');
-                $id = uniqid();
-                mysqli_stmt_bind_param($stmt, "ssss", $_SESSION['userUid'], $name, $date, $id);
+                mysqli_stmt_bind_param($stmt, "ssss", $_SESSION['userUid'], $name, $date, $newId);
                 mysqli_stmt_execute($stmt); 
 
                 $data = $_POST['photo'];
@@ -138,7 +136,7 @@
                 list(, $data) = explode(',', $data);
                 $data = base64_decode($data);
 
-                file_put_contents($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings/".$id.'.png', $data);
+                file_put_contents($_SERVER['DOCUMENT_ROOT']."/CSCI-3308-Fall21-013-07/root/map/drawings/".$newId.'.png', $data);
 
                 $sql = "UPDATE userinfo SET drawingCount = drawingCount + 1 WHERE username = ?;";
                 $stmt = mysqli_stmt_init($conn);

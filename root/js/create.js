@@ -92,16 +92,20 @@ function save() {
     // document.getElementById("undercanimg").style.display = "block";
 
     var photo = canvas.toDataURL("image/png");
+    var id = document.getElementById("randNum").value;
     var drawingName = document.getElementById("drawingTitle").value;
     $.ajax({
         method: 'POST',
         url: "includes/upload.inc.php",
         data: {
             photo: photo,
+            id: id,
             drawingName: drawingName
         },
         success: function(response) {
             console.log(response);
+            document.location = 'map/editdrawing.php?map=' + id;
+            return false;
         }
     });
 }
