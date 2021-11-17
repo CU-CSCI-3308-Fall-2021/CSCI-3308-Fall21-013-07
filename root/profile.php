@@ -21,14 +21,14 @@
 
                     if ($row = mysqli_fetch_assoc($result)) {
                         $userName = $row['username'];
-                        $dateJoined = $row['registrationDate'];
+                        $date = strtotime($row['registrationDate']);
                         $email = $row['email'];
                         $drawingCount = $row['drawingCount'];
 
                         echo "User: ".$userName."<br>";
                         echo "Email: ".$email."<br>";
                         echo "Number of drawings: ".$drawingCount."<br>";
-                        echo "Date Joined: ".$dateJoined."<br>";
+                        echo "Date Joined: ".date('F j, Y', $date)."<br>";
                     } else {
                         echo '<p>No user found!</p>';
                     }

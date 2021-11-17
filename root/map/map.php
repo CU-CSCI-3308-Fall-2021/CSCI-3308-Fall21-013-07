@@ -15,7 +15,6 @@
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         echo '<p>No map found!</p>';
         exit();
-
     } else {
         mysqli_stmt_bind_param($stmt, "s", $fileName);
         mysqli_stmt_execute($stmt);
