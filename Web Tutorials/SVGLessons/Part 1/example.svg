@@ -1,6 +1,0 @@
-<svg id="example" class="example" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 862 517">
-    <circle class="face" cx="414.5" cy="257.5" r="236.5" fill="#fbc52a">
-    <circle class="eye" cx="204.48" cy="172" r="37.98" fill="#fbc52a" stroke="#fff" stroke-miterlimit="10">
-    <circle class="eye" cx="508.52" cy="172" r="37.98" fill="#fbc52a" stroke="#fff" stroke-miterlimit="10">
-    <path class="mouth" d="M271,318s21,112,143.5,112S557,318,557,318Z" fill="#fff"> 
-</svg>
