@@ -1,12 +1,11 @@
 <?php
     require "../header.php";
+    require "../includes/dbh.inc.php";
 
     if(!isset($_GET['map'])) {
         header("Location: ../index.php");
         exit();
     }
-
-    $mapName;
 
     $sql = "SELECT * FROM drawings WHERE fileName=?";
     $stmt = mysqli_stmt_init($conn);
@@ -15,12 +14,12 @@
         header("Location: ../index.php");
         exit();
     } else {
-        mysqli_stmt_bind_param($stmt, "s", $fileName);
+        mysqli_stmt_bind_param($stmt, "s", $_GET['map']);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 
         if ($row = mysqli_fetch_assoc($result)) {
-            $fileNamePrint = $row['fileName'];
+            $fileName = $row['fileName'];
             $userName = $row['username'];
             $drawingName = $row['drawingName'];
             $dateModified = strtotime($row['dateModified']);
@@ -37,7 +36,7 @@
                 </form>
             
                 <div class="main-create-container" style="margin-top: 1%;">
-                    <h2>Edit '.$mapName.'</h2>
+                    <h2>Edit '.$drawingName.'</h2>
                     <hr class="create-hr">
                     <div class="create-container">
                         <div class="canvas-wrap">
