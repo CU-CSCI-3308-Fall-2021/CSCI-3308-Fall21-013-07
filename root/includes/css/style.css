@@ -24,6 +24,7 @@ ul {
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 20;
 }
 
 ul li {
@@ -69,7 +70,6 @@ ul li.user-profile-link a:hover {
 .home-welcome, .home-user-welcome {
     text-align: center;
 }
-
 
 .home-info {
     font-size: 16px;
@@ -127,6 +127,112 @@ ul li.user-profile-link a:hover {
     color: #ecf0f1;
 }
 
+/* create.php */
+
+.drawing-name-form {
+    margin: 0 auto;
+    width: 40%;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.main-create-container {
+    margin: 5% auto;
+    width: 75%;
+    border: 2px solid #ecf0f1;
+    border-radius: 24px;
+    color: #ecf0f1;
+}
+
+.main-create-container h2 {
+    text-align: center;
+}
+
+.create-hr {
+    border-top: 1px solid #bdc3c7;
+    width: 67%;
+}
+
+.create-container {
+    display: flex;
+    height: 530px;
+}
+
+.canvas-wrap {
+    position: relative;
+    top: 7%;
+    left: 7%;
+    width: 500px;
+    height: 400px;
+}
+
+.canvas-wrap canvas#undercan {
+    position: absolute;
+    border: #111 2px solid;
+}
+
+.canvas-wrap canvas#can {
+    position: absolute;
+    border: #111 2px solid;
+    background: white;
+    z-index: 2;
+}
+
+.create-btn-container {
+    width: 500px;
+    height: 400px;
+    margin-left: 7%;
+    margin-top: 2%;
+}
+
+.btn-container {
+    text-align: center;
+}
+
+.btn-container p {
+    margin-bottom: 10px;
+}
+
+.color-row {
+    display: flex;
+    width: 60px;
+    margin: 0 auto;
+}
+
+.color-btn {
+    width: 20px;
+    height: 20px;
+}
+
+.eraser {
+    margin: 0 auto;
+    border: 1px solid #2c3e50;
+}
+
+.btn-hr {
+    margin-top: 15px;
+    width: 67%;
+}
+
+.other-btn-container {
+    padding-top: 20px;
+}
+
+.create-btn {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 12px auto;
+    text-align: center;
+    font-size: 16px;
+    border: 2px solid #2ecc71;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: #ecf0f1;
+    border-radius: 24px;
+}
+
 /* signup.php CSS */
 
 .signup-container {
@@ -135,14 +241,14 @@ ul li.user-profile-link a:hover {
     text-align: center;
 }
 
-.form-signup {
+.form-signup, .drawing-name-form {
     padding: 20px 40px;
     background: #34495e;
     border: 2px solid #7f8c8d;
     border-radius: 24px;
 }
 
-.form-signup h1 {
+.form-signup h1, .drawing-name-form h1 {
     color: #ecf0f1;
     text-transform: uppercase;
     font-weight: 500;
@@ -157,7 +263,7 @@ ul li.user-profile-link a:hover {
     color: #f1c40f;
 }
 
-.form-signup input[type = "text"], .form-signup input[type = "password"] {
+.form-signup input[type = "text"], .drawing-name-form input[type = "text"], .form-signup input[type = "password"] {
     border: 0;
     background: none;
     display: block;
@@ -177,7 +283,7 @@ ul li.user-profile-link a:hover {
     border-color: #e74c3c !important;
 }
 
-.form-signup input[type = "text"]:focus, .form-signup input[type = "password"]:focus {
+.form-signup input[type = "text"]:focus, .form-signup input[type = "password"]:focus, .drawing-name-form input[type = "text"]:focus {
     width: 280px;
     border-color: #2ecc71;
 }

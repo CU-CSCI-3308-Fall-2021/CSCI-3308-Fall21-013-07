@@ -1,8 +1,8 @@
 // setup canvas, context, and some helper variables for sketching
 var canvas, ctx, flag = false,
 // x cooridnates
-prevX = 0,
-currX = 0,
+prevX = 400,
+currX = 400,
 // y cooridnates
 prevY = 0,
 currY = 0,
@@ -50,29 +50,7 @@ function init() {
 function color(obj) {
     // function passes obj.id which is association with the <div> for each color seltion form the pallet
     // x is our pen color
-    switch (obj.id) {
-        case "green":
-            x = "green";
-            break;
-        case "blue":
-            x = "blue";
-            break;
-        case "red":
-            x = "red";
-            break;
-        case "yellow":
-            x = "yellow";
-            break;
-        case "orange":
-            x = "orange";
-            break;
-        case "black":
-            x = "black";
-            break;
-        case "white":
-            x = "white";
-            break;
-    }
+    x = obj.id;
     // note y is our line width we make it wider while erasing to make it easier!
     if (x == "white") y = 14;
     else y = 2;
@@ -107,11 +85,11 @@ function erase() {
 // copy canvas //
 function save() {
     // just kinda copies the current status of canvas and sets that as the canvas in the copy also
-    document.getElementById("canvasimg").style.border = "#111 2px solid";
+    // document.getElementById("canvasimg").style.border = "#111 2px solid";
     var dataURL = canvas.toDataURL();
     document.getElementById("canvasimg").src = dataURL;
-    document.getElementById("canvasimg").style.display = "inline";
-    document.getElementById("undercanimg").style.display = "block";
+    document.getElementById("canvasimg").style.display = "none";
+    // document.getElementById("undercanimg").style.display = "block";
 
     var photo = canvas.toDataURL("image/png");
     var drawingName = document.getElementById("drawingTitle").value;
@@ -193,8 +171,8 @@ function findxy(res, e) {
     if (res == 'down') {
         prevX = currX;
         prevY = currY;
-        currX = e.clientX - canvas.offsetLeft;
-        currY = e.clientY - canvas.offsetTop;
+        currX = e.clientX - 275;
+        currY = e.clientY - 170;
 
         flag = true;
         dot_flag = true;
@@ -213,8 +191,8 @@ function findxy(res, e) {
         if (flag) {
             prevX = currX;
             prevY = currY;
-            currX = e.clientX - canvas.offsetLeft;
-            currY = e.clientY - canvas.offsetTop;
+            currX = e.clientX - 275;
+            currY = e.clientY - 170;
             draw();
         }
     }
