@@ -24,16 +24,28 @@
             $drawingName = $row['drawingName'];
             $dateModified = strtotime($row['dateModified']);
             $mapFound = true;
+        } else {
+            header("Location: ../index.php");
+            exit();
         }
     }
 ?>
 
 <main>
     <?php
-        if (isset($_SESSION['userId'])) {
+        if (isset($_SESSION['userId']) && $_SESSION['userUid'] == $userName) {
             echo '<form style="display:none;" method="POST">
-                    <input type="text" id="drawingTitle" name="drawingName" value="'.$_GET['map'].'">
+                    <input type="text" id="fileName" name="fileName" value="'.$fileName.'">
+                    <input type="text" id="oldTitle" name="drawingName" value="'.$drawingName.'">
+                    <input type="text" id="newId" name="newId" value="'.uniqid().'">
                 </form>
+
+                <form class="drawing-name-form" method="POST">
+                    <h1>New Name (optional)</h1>
+                    <input type="text" id="drawingTitle" name="drawingName" placeholder="Enter a new name...">
+                </form>
+
+                <img src="drawings/'.$fileName.'.png" alt="Drawing by '.$userName.'" id="img" style="display: none;">
             
                 <div class="main-create-container" style="margin-top: 1%;">
                     <h2>Edit '.$drawingName.'</h2>
@@ -61,9 +73,9 @@
                                 <div class="color-btn eraser" style="background:white;" id="white" onclick="color(this)"></div>
                                 <hr class="create-hr btn-hr">
                                 <div class="other-btn-container">
-                                    <input class="create-btn first-btn" type="button" value="Save" id="btn" size="30" onclick="save()">
-                                    <input class="create-btn" type="button" value="Exp" id="exp" size="30" onclick="exportMap()">
-                                    <input class="create-btn" type="button" value="Clear" id="clr" size="23" onclick="erase()">
+                                    <input class="create-btn first-btn" type="button" value="Save" id="btn" onclick="save2()">
+                                    <input class="create-btn" type="button" value="Exp" id="exp" onclick="exportMap()">
+                                    <input class="create-btn" type="button" value="Clear" id="clr"onclick="erase()">
                                 </div>
                             </div>
                         </div>
@@ -72,7 +84,7 @@
                     </div>
                 </div>';
         } else {
-            header("Location: login.php");
+            header("Location: ../index.php");
             exit();
         }
     ?>

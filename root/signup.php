@@ -90,36 +90,36 @@
                 }
             }
 
-            if($_SESSION['invalidFN']) {
+            if(isset($_SESSION['invalidFN']) && $_SESSION['invalidFN']) {
                 $fInvalid = true;
                 $count++;
             }
-            if($_SESSION['invalidLN']) {
+            if(isset($_SESSION['invalidLN']) && $_SESSION['invalidLN']) {
                 $lInvalid = true;
                 $count++;
             }
-            if($_SESSION['invalidUser']) {
+            if(isset($_SESSION['invalidUser']) && $_SESSION['invalidUser']) {
                 $uInvalid = true;
                 $count++;
             }
-            if($_SESSION['invalidEmail']) {
+            if(isset($_SESSION['invalidEmail']) && $_SESSION['invalidEmail']) {
                 $eInvalid = true;
                 $count++;
             }
-            if($_SESSION['invalidPwd']) {
+            if(isset($_SESSION['invalidPwd']) && $_SESSION['invalidPwd']) {
                 $pInvalid = true;
                 $count++;
             }
-            if($_SESSION['invalidPwdLength']) {
+            if(isset($_SESSION['invalidPwdLength']) && $_SESSION['invalidPwdLength']) {
                 $pInvalidLength = true;
                 $pInvalid = true;
                 $count++;
             }
-            if($_SESSION['takenUser']) {
+            if(isset($_SESSION['takenUser']) && $_SESSION['takenUser']) {
                 $takenUser = true;
                 $count++;
             }
-            if($_SESSION['takenEmail']) {
+            if(isset($_SESSION['takenEmail']) && $_SESSION['takenEmail']) {
                 $takenEmail = true;
                 $count++;
             }

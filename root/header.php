@@ -8,7 +8,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <base href="root">
-        <title>Dungeon Designer</title>
+        <title>Doodle Designer</title>
         <?php
             // Grab current URL
             $currPage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
@@ -18,12 +18,18 @@
                 echo '<script type="text/javascript" src="js/create.js"></script>';
                 echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';
             }
+            if($currPage == "editdrawing.php") {
+                echo '<script type="text/javascript" src="../js/create.js"></script>';
+                echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';
+            }
         ?>
         <link rel="shortcut icon" href="#">
     </head>
     <?php
         if ($currPage == "create.php") {
             echo '<body onload="init()">';
+        } else if ($currPage == "editdrawing.php") {
+            echo '<body onload="init(); writeImage();">';
         } else {
             echo '<body>';
         }
@@ -35,11 +41,11 @@
                         if ($currPage == "map.php" || $currPage == "editdrawing.php") {
                             echo '<li><a href="../index.php" class="active">Home</a></li>
                                 <li><a href="../create.php">Create</a></li>
-                                <li><a href="../search.php">Search Map</a></li>';
+                                <li><a href="../search.php">Search Drawing</a></li>';
                             } else {
                                 echo '<li><a href="index.php" class="active">Home</a></li>
                                     <li><a href="create.php">Create</a></li>
-                                    <li><a href="search.php">Search Map</a></li>';
+                                    <li><a href="search.php">Search Drawing</a></li>';
                         }
                         if(isset($_SESSION['userId'])) {
                             $userName = $_SESSION['userUid'];

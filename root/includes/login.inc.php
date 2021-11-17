@@ -59,11 +59,12 @@
                         $_SESSION['userId'] = $row['userID'];
                         $_SESSION['userUid'] = $row['username'];
 
-                        $_SESSION['login-submit'] = 0;
-                        $_SESSION['mailuser'] = 0;
-                        $_SESSION['pwdLength'] = 0;
-                        $_SESSION['empty'] = 0;
-                        $_SESSION['invalidMailUID'] = 0;
+                        $_SESSION['login-submit'] = false;
+                        $_SESSION['mailuser'] = false;
+                        $_SESSION['pwdLength'] = false;
+                        $_SESSION['empty'] = false;
+                        $_SESSION['invalidMailUID'] = false;
+                        $_SESSION['invalidPwd'] = false;
 
                         header("Location: ../index.php");
                         exit();

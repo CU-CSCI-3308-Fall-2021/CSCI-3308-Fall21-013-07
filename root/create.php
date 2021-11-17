@@ -36,9 +36,9 @@
                                 <div class="color-btn eraser" style="background:white;" id="white" onclick="color(this)"></div>
                                 <hr class="create-hr btn-hr">
                                 <div class="other-btn-container">
-                                    <input class="create-btn first-btn" type="button" value="Save" id="btn" size="30" onclick="save()">
-                                    <input class="create-btn" type="button" value="Exp" id="exp" size="30" onclick="exportMap()">
-                                    <input class="create-btn" type="button" value="Clear" id="clr" size="23" onclick="erase()">
+                                    <input class="create-btn first-btn" type="button" value="Save" id="btn" onclick="save()">
+                                    <input class="create-btn" type="button" value="Exp" id="exp" onclick="exportMap()">
+                                    <input class="create-btn" type="button" value="Clear" id="clr" onclick="erase()">
                                 </div>
                             </div>
                         </div>

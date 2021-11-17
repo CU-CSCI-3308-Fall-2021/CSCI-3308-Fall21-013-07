@@ -383,14 +383,14 @@ p.search-query-result-fail {
 
 .profile-container {
     display: flex;
-}
-
-.user-container {
-    /* border: 2px solid #f00; */
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 75%;
 }
 
 .edit-profile-container {
-    /* border: 2px solid #7f8c8d; */
+    margin-left: 5%;
 }
 
 .edit-profile input[type = "submit"] {

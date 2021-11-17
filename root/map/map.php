@@ -47,7 +47,7 @@
         <div class="map-info">
             <?php
                 if(isset($dateModified)) {
-                    echo '<p>Created by: '.$userName.'</p>';
+                    echo '<p>Created by: <a href="../profile.php?user='.$userName.'">'.$userName.'</a></p>';
                     echo '<p>Last Modified: '.date('F j, Y', $dateModified).'</p>';
                     if (isset($_SESSION['userUid']) && $userName == $_SESSION['userUid']) {
                         echo '<form class="edit-profile" action="editdrawing.php?map='.$fileName.'" method="POST"><input type="submit" name="edit-drawing-submit" value="Edit Drawing"></form>';

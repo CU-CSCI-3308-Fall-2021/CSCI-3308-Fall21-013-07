@@ -106,6 +106,37 @@ function save() {
     });
 }
 
+function save2() {
+    // just kinda copies the current status of canvas and sets that as the canvas in the copy also
+    // document.getElementById("canvasimg").style.border = "#111 2px solid";
+    var dataURL = canvas.toDataURL();
+    document.getElementById("canvasimg").src = dataURL;
+    document.getElementById("canvasimg").style.display = "none";
+    // document.getElementById("undercanimg").style.display = "block";
+
+    var photo = canvas.toDataURL("image/png");
+    var fileName = document.getElementById("fileName").value;
+    var oldName = document.getElementById("oldTitle").value;
+    var newId = document.getElementById("newId").value;
+    var newName = document.getElementById("drawingTitle").value == "" ? oldName : document.getElementById("drawingTitle").value;
+    $.ajax({
+        method: 'POST',
+        url: "../includes/update.inc.php",
+        data: {
+            photo: photo,
+            fileName : fileName,
+            oldName : oldName,
+            newName : newName,
+            newId: newId
+        },
+        success: function(response) {
+            console.log(response);
+            document.location = '../map/editdrawing.php?map=' + newId;
+            return false;
+        }
+    });
+}
+
 function exportMap(){
     const a = document.createElement("a");
     document.body.appendChild(a);
@@ -162,6 +193,23 @@ function loadImage() {
         p.innerHTML = msg;
         document.body.appendChild(p);
     }
+}
+
+function writeImage() {
+
+    var callback = function(image) {
+        if(!image) image = this;
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(image, 0, 0);
+    }
+        
+    if(img.complete) { //check if image was already loaded by the browser
+        callback(img);
+    }else {
+        img.onload = callback;
+    }
+
 }
 
 ////////////////////////////////////////////////////////////

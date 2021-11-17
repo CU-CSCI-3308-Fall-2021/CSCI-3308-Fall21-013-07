@@ -25,10 +25,10 @@
                         $email = $row['email'];
                         $drawingCount = $row['drawingCount'];
 
-                        echo "User: ".$userName."<br>";
-                        echo "Email: ".$email."<br>";
-                        echo "Number of drawings: ".$drawingCount."<br>";
-                        echo "Date Joined: ".date('F j, Y', $date)."<br>";
+                        echo "<p>User: ".$userName."</p><br>";
+                        echo "<p>Email: ".$email."</p><br>";
+                        echo "<p>Number of drawings: ".$drawingCount."</p><br>";
+                        echo "<p>Date Joined: ".date('F j, Y', $date)."</p><br>";
                     } else {
                         echo '<p>No user found!</p>';
                     }
@@ -38,7 +38,7 @@
         <?php
         if (isset($_SESSION['userUid']) && $_SESSION['userUid'] == $user) {
             echo '<div class="edit-profile-container">';
-
+            echo '<div class="form-signup">';
             echo '<h1 id="edit-user-h1">Edit User Profile</h1>';
 
             echo '<form class="edit-profile" action="changeuser.php" method="POST"><input type="submit" name="change-username-btn" value="Change username"></form>';
@@ -46,7 +46,7 @@
             echo '<form class="edit-profile" action="includes/deletedrawings.inc.php" method="POST"><input class="warning" type="submit" name="delete-drawings-submit" value="Delete all drawings"></form>';
             echo '<form class="edit-profile" action="includes/deleteprofile.inc.php" method="POST"><input class="warning" type="submit" name="delete-profile-submit" value="Delete profile"></form>';
 
-            echo '</div>';
+            echo '</div></div>';
         }
         ?>
     </div>
