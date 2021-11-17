@@ -89,7 +89,7 @@ body {
 }
 
 .canvas-wrap canvas#canvasimg {
-
+    background: white;
 }
 
 .image-preview{
