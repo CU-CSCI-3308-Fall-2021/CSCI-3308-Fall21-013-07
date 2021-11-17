@@ -1,8 +1,8 @@
 // setup canvas, context, and some helper variables for sketching
 var canvas, ctx, flag = false,
 // x cooridnates
-prevX = 400,
-currX = 400,
+prevX = 0,
+currX = 0,
 // y cooridnates
 prevY = 0,
 currY = 0,
@@ -110,7 +110,7 @@ function exportMap(){
     const a = document.createElement("a");
     document.body.appendChild(a);
     a.href = canvas.toDataURL();
-    a.download = "canvas-image.png";
+    a.download = document.getElementById("drawingTitle").value != "" ? document.getElementById("drawingTitle").value : "canvas-img";
     a.click();
     document.body.removeChild(a);
 }
@@ -172,7 +172,7 @@ function findxy(res, e) {
         prevX = currX;
         prevY = currY;
         currX = e.clientX - 275;
-        currY = e.clientY - 170;
+        currY = e.clientY - 175;
 
         flag = true;
         dot_flag = true;
@@ -192,7 +192,7 @@ function findxy(res, e) {
             prevX = currX;
             prevY = currY;
             currX = e.clientX - 275;
-            currY = e.clientY - 170;
+            currY = e.clientY - 175;
             draw();
         }
     }

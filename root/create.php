@@ -14,8 +14,8 @@
         <hr class="create-hr">
         <div class="create-container">
             <div class="canvas-wrap">
-                <canvas id="undercan" width="498" height="398"></canvas>
-                <canvas id="can" width="498" height="398"></canvas>
+                <canvas id="undercan" width="500" height="400"></canvas>
+                <canvas id="can" width="500" height="400"></canvas>
             </div>
             <div class="create-btn-container">
                 <div class="btn-container">
