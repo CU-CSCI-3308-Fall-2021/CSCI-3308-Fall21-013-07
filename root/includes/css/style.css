@@ -1,0 +1,465 @@
+* {
+    text-decoration: none;
+    font-family: sans-serif;
+    /* Remove scrollbar */
+    scrollbar-width: none; /* for Firefox */
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+}
+
+*::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
+
+body {
+    background-color: #2c3e50;
+    
+}
+
+/* Nav Bar Stuff */
+
+main {
+    padding-top: 6%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2d3436;
+    border-bottom: 2px solid #7f8c8d;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+}
+
+ul li {
+    float: left;
+}
+
+.user-logout-container {
+    float: right;
+    padding-left: 3%;
+}
+
+ul li a {
+    display: block;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+ul li.login-btn a, ul li.login-btn a:hover {
+    background-color: #2ecc71;
+}
+
+ul li a:hover {
+    background-color: #636e72;
+}
+
+ul li.user-profile-link a:hover {
+    background-color: #636e72;
+}
+
+/* index.php CSS */
+
+.home-container {
+    width: 75%;
+    margin: 0 auto;
+    color: #ecf0f1;
+}
+
+.home-info-container {
+    border: 2px solid #ecf0f1;
+    border-radius: 24px;
+    padding: 2%;
+}
+
+.home-welcome, .home-user-welcome {
+    text-align: center;
+}
+
+.home-info {
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.home-info-container {
+    width: 67%;
+    line-height: 20px;
+    margin: 0 auto;
+}
+
+.home-info-container h2 {
+    color: #f1c40f;
+}
+
+.projects-container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.projects-container hr {
+    border-top: 1px solid #bdc3c7;
+    width: 86%;
+    margin-bottom: 5%;
+}
+
+.project-info-title {
+    text-align: center;
+}
+
+.project-row {
+    margin: 3% auto;
+    width: 80%;
+    display: flex;
+}
+
+.project-link {
+    color: #ecf0f1;
+    margin: 0 auto;
+}
+
+.project-container {
+    height: 175px;
+    width: 175px;
+    border: 2px solid #ecf0f1;
+    border-radius: 24px;
+    text-align: center;
+}
+
+.project-container p {
+    padding-top: 7%;
+}
+
+.projects-container p.create-first-drawing a {
+    color: #f1c40f;
+}
+
+.test-login {
+    color: #ecf0f1;
+}
+
+/* create.php */
+
+.drawing-name-form {
+    margin: 0 auto;
+    width: 40%;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.main-create-container {
+    margin: 5% auto;
+    width: 75%;
+    border: 2px solid #ecf0f1;
+    border-radius: 24px;
+    color: #ecf0f1;
+}
+
+.main-create-container h2 {
+    text-align: center;
+}
+
+.create-hr {
+    border-top: 1px solid #bdc3c7;
+    width: 67%;
+}
+
+.create-container {
+    display: flex;
+    height: 530px;
+}
+
+.canvas-wrap {
+    position: relative;
+    top: 7%;
+    left: 7%;
+    width: 500px;
+    height: 400px;
+}
+
+.canvas-wrap canvas#undercan {
+    position: absolute;
+}
+
+.canvas-wrap canvas#can {
+    position: absolute;
+    background: white;
+    z-index: 2;
+}
+
+.create-btn-container {
+    width: 500px;
+    height: 400px;
+    margin-left: 7%;
+    margin-top: 2%;
+}
+
+.btn-container {
+    text-align: center;
+}
+
+.btn-container p {
+    margin-bottom: 10px;
+}
+
+.color-row {
+    display: flex;
+    width: 60px;
+    margin: 0 auto;
+}
+
+.color-btn {
+    width: 20px;
+    height: 20px;
+}
+
+.eraser {
+    margin: 0 auto;
+    border: 1px solid #2c3e50;
+}
+
+.btn-hr {
+    margin-top: 15px;
+    width: 67%;
+}
+
+.other-btn-container {
+    padding-top: 20px;
+}
+
+.create-btn {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 12px auto;
+    text-align: center;
+    font-size: 16px;
+    border: 2px solid #2ecc71;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: #ecf0f1;
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+.create-btn:hover {
+    background: #2ecc71;
+}
+
+/* signup.php CSS */
+
+.signup-container {
+    margin: 0 auto;
+    width: 40%;
+    text-align: center;
+}
+
+.form-signup, .drawing-name-form {
+    padding: 20px 40px;
+    background: #34495e;
+    border: 2px solid #7f8c8d;
+    border-radius: 24px;
+}
+
+.form-signup h1, .drawing-name-form h1 {
+    color: #ecf0f1;
+    text-transform: uppercase;
+    font-weight: 500;
+    background: #34495e;
+}
+
+.form-signup p {
+    color: #ecf0f1;
+}
+
+.form-signup p a, .map-page-container p a {
+    color: #f1c40f;
+}
+
+.form-signup input[type = "text"], .drawing-name-form input[type = "text"], .form-signup input[type = "password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 12px auto;
+    text-align: center;
+    font-size: 16px;
+    border: 2px solid #7f8c8d;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: #ecf0f1;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.form-signup input.signup-error, .warning {
+    border-color: #e74c3c !important;
+}
+
+.form-signup input[type = "text"]:focus, .form-signup input[type = "password"]:focus, .drawing-name-form input[type = "text"]:focus {
+    width: 280px;
+    border-color: #2ecc71;
+}
+
+.form-signup input.signup-success {
+    border-color: #2ecc71;
+}
+
+.form-signup input.signup-error, .form-signup input.signup-error:focus {
+    border-color: #e74c3c;
+}
+
+.form-signup input[type = "submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: #ecf0f1;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.form-signup input[type = "submit"]:focus {
+    background: #2ecc71;
+}
+
+/* search.php CSS */
+
+p.search-query-result {
+    color: #2ecc71;
+    text-align: center;
+    padding-top: 2%;
+}
+
+p.search-query-result-fail {
+    color: #e74c3c;
+    text-align: center;
+    padding-top: 2%;
+}
+
+/* map.php CSS */
+
+.map-page-container {
+    width: 75%;
+    padding-bottom: 4%;
+    margin: 0 auto;
+    color: #ecf0f1;
+}
+
+.drawing-title {
+    color: #ecf0f1;
+    text-align: center;
+}
+
+.map-container {
+    margin: 0 auto;
+    display: flex;
+    margin-top: -4%;
+}
+
+.img-container {
+    min-height: 400px;
+    width: 500px;
+    margin-left: 7%;
+    margin-top: 7%;
+}
+
+.map-img {
+    height: 400px;
+    width: 500px;
+    background-color: white;
+}
+
+.map-info {
+    width: 25%;
+    margin-top: 7%;
+    margin: auto auto;
+}
+
+.map-info p {
+    text-align: center;
+}
+
+/* profile.php CSS */
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 75%;
+    height: 30%;
+}
+
+.edit-profile-container {
+    margin-left: 5%;
+}
+
+.edit-profile input[type = "submit"] {
+    border: 0;
+    width: 75%;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: #ecf0f1;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.edit-profile input[type = "submit"]:hover {
+    background: #2ecc71;
+}
+
+.edit-profile input[type = "submit"].warning:hover {
+    background: #e74c3c;
+}
+
+#edit-user-h1 {
+    color: #ecf0f1;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* 404.php CSS */
+
+.errorcontainer {
+    display: block;
+    padding: 10px 0;
+    margin: 0 auto;
+    width: 75%;
+}
+
+.error-message {
+    color: #ecf0f1;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 120px;
+}
+
+.error-detail {
+    color: #ecf0f1;
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 7px;
+}
