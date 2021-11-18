@@ -130,9 +130,15 @@ ul li.user-profile-link a:hover {
     text-align: center;
 }
 
+.project-container:hover {
+    border: 2px solid #f39c12;
+    color: #f1c40f;
+}
+
 .project-container p {
     padding-top: 7%;
 }
+
 
 .projects-container p.create-first-drawing a {
     color: #f1c40f;
