@@ -25,7 +25,9 @@
                         $email = $row['email'];
                         $drawingCount = $row['drawingCount'];
                         echo "<p>User: ".$userName."</p><br>";
-                        echo "<p>Email: ".$email."</p><br>";
+                        if (isset($_SESSION['userUid']) && $_SESSION['userUid'] == $userName) {
+                            echo "<p>Email: ".$email."</p><br>";
+                        }
                         echo "<p>Number of drawings: ".$drawingCount."</p><br>";
                         echo "<p>Date Joined: ".date('F j, Y', $date)."</p><br>";
                     } else {
