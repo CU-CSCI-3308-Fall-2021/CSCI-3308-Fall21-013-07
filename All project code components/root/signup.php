@@ -195,7 +195,7 @@
                     } else if ($takenEmail) {
                         echo '<p class="signup-error"><strong>E-mail already taken!</strong></p>';
                     } else if ($pInvalidLength) {
-                        echo '<p class="signup-error"><strong>Passwords too short!</strong></p>';
+                        echo '<p class="signup-error"><strong>Password too short!</strong></p>';
                     } else {
                         echo '<p class="signup-error"><strong>Passwords do not match!</strong></p>';
                     }
