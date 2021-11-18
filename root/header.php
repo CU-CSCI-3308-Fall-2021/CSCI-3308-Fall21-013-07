@@ -18,7 +18,7 @@
                 echo '<script type="text/javascript" src="js/create.js"></script>';
                 echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';
             }
-            if($currPage == "editdrawing.php") {
+            if($currPage == "editdrawing.php" || $currPage == "map.php") {
                 echo '<script type="text/javascript" src="../js/create.js"></script>';
                 echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';
             }
@@ -28,7 +28,7 @@
     <?php
         if ($currPage == "create.php") {
             echo '<body onload="init()">';
-        } else if ($currPage == "editdrawing.php") {
+        } else if ($currPage == "editdrawing.php" || $currPage == "map.php") {
             echo '<body onload="init(); writeImage();">';
         } else {
             echo '<body>';

@@ -159,6 +159,15 @@ function exportMap2(){
     document.body.removeChild(a);
 }
 
+function exportMap3(){
+    const a = document.createElement("a");
+    document.body.appendChild(a);
+    a.href = canvas.toDataURL();
+    a.download = document.getElementById("drawingTitle").innerHTML != "" ? document.getElementById("drawingTitle").innerHTML : "canvas-img";
+    a.click();
+    document.body.removeChild(a);
+}
+
 ////////////////////////////////////////////////////////////
 
 function writeImage() {
@@ -172,7 +181,7 @@ function writeImage() {
         
     if(img.complete) { //check if image was already loaded by the browser
         callback(img);
-    }else {
+    } else {
         img.onload = callback;
     }
 

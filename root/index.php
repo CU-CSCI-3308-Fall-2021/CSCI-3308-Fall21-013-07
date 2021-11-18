@@ -11,7 +11,7 @@
                 // User not logged in
                 echo "
                         <div class='home-info-container'>
-                        <h1 class='home-welcome'>Welcome to Dungeon Designer!</h1><br>
+                        <h1 class='home-welcome'>Welcome to Doodle Designer!</h1><br>
                             <h2>What is Doodle Designer?</h2>
                             <p class='home-info'>
                             Doodle Designer was created to provide a way to create simple, fun doodles and share them with others, or just save them for later.
@@ -30,7 +30,7 @@
                 $username = $_SESSION['userUid'];
                 echo '<h1 class="home-user-welcome">Welcome back, '.$username.'!</h1>';
                 echo '<div class="projects-container">
-                        <h3 class="project-info-title">My projects</h3>
+                        <h2 class="project-info-title">My projects</h2>
                         <hr>';
 
                 $sql = "SELECT * FROM drawings WHERE username='$username';";
