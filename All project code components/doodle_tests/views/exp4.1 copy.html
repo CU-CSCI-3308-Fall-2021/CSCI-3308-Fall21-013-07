@@ -1,0 +1,144 @@
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>Canvas App</title>
+        <link rel="stylesheet" type="text/css" href="../recs/css/exp4.1.css">
+        <script type="text/javascript" src="../recs/js/exp4.1.js"></script>
+        <style>
+            .image-preview{
+                width: 300px;
+                min-height: 100px;
+                border: 2px solid rgb(0, 0, 0);
+                margin-top: 15px;
+    
+                /* default text */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                color: #CCCCCC;
+            }
+            .image-preview__image{
+                display: none;
+                width: 100%;
+    
+            }
+        </style>
+        <!-- ----------------------------------- -->
+        <!-- ----------------------------------- -->    
+        <script>
+            const inpFile = document.getElementById("inpFile");
+            const previewContainter = document.getElementById("imagePreview");
+            const previewImage = previewContainter.querySelector(".image-preview__image");
+            const previewDefaultText = previewContainter.querySelector(".image-preview__default-text");
+    
+            inpFile.addEventListener("change", function() {
+                const file = this.files[0];
+    
+                // console.log(file);
+    
+                if (file) {
+                    const reader = new FileReader();
+    
+                    previewDefaultText.style.display = "none";
+                    previewImage.style.display = "block";
+    
+                    reader.addEventListener("load", function () {
+                        previewImage.setAttribute("src", this.result);
+                    });
+    
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
+        <!-- ----------------------------------- -->
+        <!-- ----------------------------------- -->
+        
+    </head>
+
+    <!-- load up the page and tool bar interface -->
+    <body onload="init()">
+        <div class="form-container">
+            <!-- to database -->
+            <form method="post" enctype="multipart/form-data">
+                <label>Title</label>
+                <input type="text" name="title">
+                <label>File Upload</label>
+                <input type="File" name="file">
+                <input type="submit" name="submit">
+            </form>
+        </div>
+
+        <div class="input-container">
+            <div class="button-container">
+                <!-- load -->
+                <!-- <form action='#' onsubmit="return false;">
+                    <input type='file' id='imgfile'>
+                    <input type='button' id='btnLoad' value='Load' onclick='loadImage()'>
+                </form> -->
+                <!-- save -->
+                <input type="button" value="save" id="btn" size="30" onclick="save()">
+                <!-- export -->
+                <input type="button" value="exp" id="exp" size="30" onclick="exportMap()">
+                <!-- clear -->
+                <input type="button" value="clear" id="clr" size="23" onclick="erase()">
+            </div>
+
+            <div class="color-eraser-container">
+                <!-- color selction -->
+                <div class="color-select-container">
+                    <div class="choose-color">Choose Color</div>
+                    <div class="color-row">
+                        <div class="color-option" style="background:green;" id="green" onclick="color(this)"></div>
+                        <div class="color-option" style="background:blue;" id="blue" onclick="color(this)"></div>
+                        <div class="color-option" style="background:red;" id="red" onclick="color(this)"></div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-option" style="background:yellow;" id="yellow" onclick="color(this)"></div>
+                        <div class="color-option" style="background:orange;" id="orange" onclick="color(this)"></div>
+                        <div class="color-option" style="background:black;" id="black" onclick="color(this)"></div>
+                    </div>
+                </div>
+                
+                <!-- eraser -->
+                <div class="eraser-container">
+                    <p>Eraser</p>
+                    <div class="eraser" id="white" onclick="color(this)"></div>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- ----------------------------------- -->
+        <!-- ----------------------------------- -->
+        <!-- load -->
+        <h1>Image Preview</h1>
+        <input type="file" name="inpFile" id="inpFile">
+        <!-- ----------------------------------- -->
+        <!-- ----------------------------------- -->
+
+        
+
+        <div class="image-preview" id ="imagePreview">
+            <img src="" alt="Image Preview" class="image-preview__image">
+            <span class="image-preview__default-text">Image Preview</span>
+        </div>
+        <!-- canvas -->
+        <div class="canvas-container">
+            
+            
+            <div class="canvas-wrap">
+                <canvas id="undercan" width="498" height="398"></canvas>
+                <canvas id="can" width="498" height="398"></canvas>
+            </div>
+
+            
+
+            <!-- sketched image -->
+            <canvas id="undercanimg" width="498" height="398" style="margin-left: 510px; border:#111 2px solid;background: white;display: none;"></canvas>
+            <img id="canvasimg" style="margin-left: 510px; display:none;">
+        </div>
+        
+        
+    </body>
+    </html>
