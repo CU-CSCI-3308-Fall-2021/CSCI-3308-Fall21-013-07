@@ -99,11 +99,13 @@ ul li.user-profile-link a:hover {
 .projects-container {
     margin: 0 auto;
     text-align: center;
+    width: 150%;
+    margin-left: -25%;
 }
 
 .projects-container hr {
     border-top: 1px solid #bdc3c7;
-    width: 86%;
+    width: 50%;
     margin-bottom: 5%;
 }
 
