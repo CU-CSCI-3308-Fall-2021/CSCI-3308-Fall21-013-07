@@ -34,7 +34,7 @@
             <nav>
                 <ul>
                     <?php
-                        echo '<li><a href="/CSCI-3308-Fall21-013-07/root/index.php" class="active">Home</a></li>
+                        echo '<li><a href="/CSCI-3308-Fall21-013-07/root/" class="active">Home</a></li>
                             <li><a href="/CSCI-3308-Fall21-013-07/root/create.php">Create</a></li>
                             <li><a href="/CSCI-3308-Fall21-013-07/root/search.php">Search Drawing</a></li>';
                         if(isset($_SESSION['userId'])) {
