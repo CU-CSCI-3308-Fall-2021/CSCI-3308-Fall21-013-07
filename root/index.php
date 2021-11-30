@@ -20,7 +20,7 @@
                             provides a way to do so.</p>
                             <h2>How did we make this?</h2>
                             <p class='home-info'>
-                            Doodle Designer was created by a group of 4 CU Boulder students, during our CSCI3308 course. This project provided us to get accustomed with
+                            Doodle Designer was created by a group of 4 CU Boulder students, during our CSCI3308 course. This project allowed us to get accustomed with
                             frontend and backend development, various different languages, and the whole workflow of a group in general. While the project still lacks a few features,
                             our vision for Doodle Designer is more social, and will involve sharing doodles with others at its core.
                             </p>

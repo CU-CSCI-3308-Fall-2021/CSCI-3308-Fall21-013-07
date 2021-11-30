@@ -1,2 +1,6 @@
-# CSCI-3308-Fall21-013-07
-CSCI-3308-Fall21-013-07
+# Doodle Designer
+Doodle Designer
+## Repo Organization/Structure  
+
+## How to Build/Run/Test Code  
+
